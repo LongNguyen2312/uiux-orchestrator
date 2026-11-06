@@ -57,3 +57,19 @@ limitations" stated that nothing was rendered: the harness did not approve a dev
 3. **Small bug fixes go direct (E1).** This matches T04 in the triggering test and is acceptable:
    the fast path would do the same. The E1 fix itself was the correct root-cause change, the same
    one as R3.
+
+## 3. v1.1.0: plugin dependencies, routing with namespaced skills
+
+The plugin was installed from GitHub with
+`claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator`. All 6
+dependencies were installed and enabled, and sessions saw 14 plugin skills, for example
+`impeccable:impeccable` and `emil-kowalski-motion:animate`. The author's standalone
+`~/.claude/skills/impeccable` was moved aside first to avoid a duplicate.
+
+| Run | Prompt (`/uiux-orchestrator …`) | Expected | Skill calls | Files changed |
+|---|---|---|---|---|
+| R1 | Review the dashboard page and find UX problems. Do not modify the code. | Impeccable critique | `impeccable:impeccable critique src/pages/Dashboard.tsx`, plus its Assessment A sub-agent | 0 ✅ |
+| R2 | The FAQ on the Help page opens and closes abruptly. Make it feel smooth. | Emil `animate` | `emil-kowalski-motion:animate` | 1 (`Help.tsx`) ✅ |
+| R3 | On the pricing page the plan name 'Professional Annual' is cut off on small phones. Fix it. | Fast path, no skill | none | 1 (`Pricing.tsx`) ✅ |
+
+The `plugin:skill` names resolved correctly in all three runs (n = 1 each).
