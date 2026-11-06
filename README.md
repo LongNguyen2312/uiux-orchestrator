@@ -21,25 +21,40 @@
 <table>
   <tr>
     <td align="center"><b>Before</b></td>
-    <td align="center"><b>After one prompt</b></td>
+    <td align="center"><b>After</b></td>
   </tr>
   <tr>
-    <td><img src="docs/assets/settings-before.png" alt="Settings page before"></td>
-    <td><img src="docs/assets/settings-after.png" alt="Settings page after"></td>
+    <td><img src="docs/assets/settings-before.png" alt="Settings page before: a bare form"></td>
+    <td><img src="docs/assets/settings-after.png" alt="Settings page after: the Event Badge concept"></td>
   </tr>
 </table>
 
-```text
-/uiux-orchestrator Redesign the settings page. Make it modern, clean and consistent with the existing app.
-```
+**The request:** *"Redesign the settings page for indie developers. Give it a real concept that
+doesn't look AI-generated."*
 
-This is a real run, not a mockup. In one pass the orchestrator:
+<p align="center">
+  <img src="docs/assets/settings-demo.gif" alt="Typing a new name reprints the badge, 2FA adds a verified seal, saving reprints it" width="100%">
+</p>
 
-- ✅ **kept the app's design system** instead of inventing a new one;
-- 🔍 **brought in a UX critique specialist**, which caught what a plain pass missed: a 1.27:1 switch,
-  iOS zoom on 14 px inputs, and help text pointing to a Settings → Billing page that doesn't exist;
-- 🛡️ **moved "Delete account"** out of the Save row into its own danger zone, with a confirmation step;
-- 📱 **checked the result** with builds and screenshots at 3 widths in light and dark mode.
+**Concept: "Event Badge".** Your account is the badge you wear at a hackathon:
+
+- ✍️ **Type your name** and the badge updates live, marked as a draft.
+- 🛡️ **Turn on two-factor** and a holographic "verified" seal sticks to the badge.
+- 🖨️ **Hit save** and the badge reprints.
+- 🎗️ **Every section has its own track colour**, like ribbons on a conference badge.
+
+The concept wasn't a guess. The orchestrator classified the task as a full redesign and handed it to
+[Impeccable](https://github.com/pbakaus/impeccable) as the design lead. Impeccable put several
+grounded directions on a decision page, and a human picked one. Nothing was mocked up: these
+images are screenshots of the running page.
+
+<table>
+  <tr>
+    <td align="center" width="33%"><img src="docs/assets/settings-before-mobile.png" alt="Mobile before"><br><sub>Before · mobile</sub></td>
+    <td align="center" width="33%"><img src="docs/assets/settings-after-mobile.png" alt="Mobile after, light"><br><sub>After · light</sub></td>
+    <td align="center" width="33%"><img src="docs/assets/settings-after-mobile-dark.png" alt="Mobile after, dark"><br><sub>After · dark</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -107,9 +122,8 @@ There are no dependencies and no setup. Just ask:
 
 Each platform has built-in, version-checked guidance. No other skill is required.
     </td>
-    <td width="50%">
-      <img src="docs/assets/settings-before-mobile.png" width="48%" alt="Mobile before">
-      <img src="docs/assets/settings-after-mobile-dark.png" width="48%" alt="Mobile after, dark mode">
+    <td width="50%" align="center">
+      <img src="docs/assets/settings-after-dark.png" alt="Desktop after, dark mode">
     </td>
   </tr>
 </table>
