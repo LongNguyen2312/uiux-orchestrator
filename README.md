@@ -45,12 +45,6 @@
   <img src="docs/assets/vahl-demo.gif" alt="The hero line draws and the title rises, model tabs wipe between photos, the charging simulator runs" width="100%">
 </picture>
 
-**The exact prompt**, typed once into Claude Code, with no help after that:
-
-```text
-/uiux-orchestrator Redesign the landing page in src/App.tsx for Vahl, a fictional German premium electric car brand with the restraint of Audi. The page works, but it looks like every SaaS template. I want a completely new, art-directed concept that feels like a premium car brand and not like a template or something AI-generated: one strong visual idea, confident typography, a deliberate colour world, and motion that feels engineered (precise and fast, no bouncy gimmicks). It needs a cinematic hero, a way to compare the three models, a technology and charging section, and test-drive booking. Use only the photos in public/cars and don't add npm packages. It must work on mobile, in light and dark mode, and with reduced motion. When you're done, verify it with screenshots and tell me which skills you used and why.
-```
-
 *Vahl is a fictional brand made up for this demo.*
 
 ### What the orchestrator did
@@ -68,7 +62,7 @@
 | Choreography | [Emil Kowalski · choreograph](https://github.com/emilkowalski/skills) | Orders the hero entrance: line, then name, then copy, then buttons |
 | Independent review | [Impeccable · critique](https://github.com/pbakaus/impeccable), in a separate agent | The reviewer never saw the designer's reasoning. It raised 13 issues, and 12 were fixed |
 
-   The GSAP skills were available but not used: the project already had `motion`, and the prompt ruled out
+   The GSAP skills were available but not used: the project already had `motion`, and the request ruled out
    new packages.
 4. **Built one idea, "Lichtlinie" (line of light).** A thin line of light draws across the hero.
    It then returns as the model-tab marker, the charging bar and the focus line in the booking form.
@@ -78,9 +72,8 @@
    - Frame-by-frame traces: the line draws in about 770 ms with no dropped frames.
    - It clicked and typed through every interaction.
 6. **Took a bug report like a teammate.** We spotted that the left edge of the "V" was clipped and
-   sent one line: *"In the hero, the left edge of the "V" in "Vahl GT" is cut off. Fix it."* The
-   orchestrator recognised a small, local bug and took its fast path, with no design skills and
-   no ceremony. It found the cause, an overflow clip on the title's wrapper, and fixed it with a
+   said so in one sentence. The orchestrator recognised a small, local bug and took its fast path,
+   with no design skills and no ceremony. It found the cause, an overflow clip on the title's wrapper, and fixed it with a
    one-line CSS change in 77 seconds.
 
 <table>
@@ -97,8 +90,7 @@
 <img src="docs/assets/vahl-fullpage.jpg" alt="Full page before (left) and after (right)">
 </details>
 
-<sub>Full run log and the agent's own report: [tests/results/2026-11-06-showcase-vahl.md](tests/results/2026-11-06-showcase-vahl.md).
-Photos: Pexels ([credits](docs/assets/CREDITS.md)).</sub>
+<sub>Photos: Pexels ([credits](docs/assets/CREDITS.md)).</sub>
 
 ---
 
