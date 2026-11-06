@@ -131,9 +131,8 @@ The status is `Passed with limitations` because the test harness did not allow a
 Where a dev server is allowed, the same review adds screenshots at several widths and both colour
 schemes (L4).
 
-**Cost.** A review that runs Impeccable's critique cost about $1.8 in API usage in these runs. A
-review without it cost about $0.4–0.6. The orchestrator uses the heavier skill when the review
-itself is the deliverable.
+A review that runs Impeccable's critique takes longer than one without it, because critique runs
+two assessment sub-agents. The orchestrator uses it when the review itself is the deliverable.
 
 ## Optional skills
 

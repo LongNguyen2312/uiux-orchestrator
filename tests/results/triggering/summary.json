@@ -8,8 +8,7 @@
    "Read",
    "Read",
    "Read"
-  ],
-  "cost_usd": 0.259
+  ]
  },
  {
   "id": "N02",
@@ -20,8 +19,7 @@
    "Read",
    "Read",
    "Read"
-  ],
-  "cost_usd": 0.298
+  ]
  },
  {
   "id": "N03",
@@ -32,8 +30,7 @@
    "Bash",
    "Glob",
    "Read"
-  ],
-  "cost_usd": 0.451
+  ]
  },
  {
   "id": "N04",
@@ -43,8 +40,7 @@
    "Bash",
    "Read",
    "Bash"
-  ],
-  "cost_usd": 0.241
+  ]
  },
  {
   "id": "T01",
@@ -57,8 +53,7 @@
    "Glob",
    "Read",
    "Bash"
-  ],
-  "cost_usd": 0.321
+  ]
  },
  {
   "id": "T02",
@@ -71,8 +66,7 @@
    "Read",
    "Glob",
    "Read"
-  ],
-  "cost_usd": 0.31
+  ]
  },
  {
   "id": "T03",
@@ -85,8 +79,7 @@
    "Read",
    "Read",
    "Glob"
-  ],
-  "cost_usd": 0.334
+  ]
  },
  {
   "id": "T04",
@@ -97,8 +90,7 @@
    "Glob",
    "Read",
    "Read"
-  ],
-  "cost_usd": 0.291
+  ]
  },
  {
   "id": "T05",
@@ -111,8 +103,7 @@
    "Glob",
    "Read",
    "Read"
-  ],
-  "cost_usd": 0.32
+  ]
  },
  {
   "id": "T06",
@@ -125,7 +116,6 @@
    "Bash",
    "Read",
    "Glob"
-  ],
-  "cost_usd": 0.307
+  ]
  }
 ]

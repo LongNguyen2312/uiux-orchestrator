@@ -28,7 +28,7 @@ The agent was **not** told about the skill. Tools were limited to Skill, Read, G
 | N04 | npm ERESOLVE error | none | none | ✅ |
 
 Result: 4/6 UI prompts triggered the orchestrator, and the other 2 went to a reasonable alternative.
-There were 0/4 false triggers. Cost was about $0.24–0.45 per 4-turn run.
+There were 0/4 false triggers.
 
 Each prompt ran once, on one model, in one environment.
 

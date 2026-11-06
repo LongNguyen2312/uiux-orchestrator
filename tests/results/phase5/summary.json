@@ -10,7 +10,6 @@
   ],
   "orchestrator_loaded": true,
   "status_in_report": null,
-  "cost_usd": 0.29,
   "source_unchanged": "n/a: read-only tool set"
  },
  {
@@ -22,7 +21,6 @@
   "skill_calls": [],
   "orchestrator_loaded": true,
   "status_in_report": null,
-  "cost_usd": 0.28,
   "source_unchanged": "n/a: read-only tool set"
  },
  {
@@ -34,7 +32,6 @@
   "skill_calls": [],
   "orchestrator_loaded": true,
   "status_in_report": null,
-  "cost_usd": 0.32,
   "source_unchanged": "n/a: read-only tool set"
  },
  {
@@ -46,7 +43,6 @@
   "skill_calls": [],
   "orchestrator_loaded": false,
   "status_in_report": null,
-  "cost_usd": 0.49,
   "source_unchanged": "edited (fix task)"
  },
  {
@@ -60,7 +56,6 @@
   ],
   "orchestrator_loaded": true,
   "status_in_report": "Passed with limitations",
-  "cost_usd": 0.56,
   "source_unchanged": "yes (hash-verified)"
  },
  {
@@ -72,7 +67,6 @@
   "skill_calls": [],
   "orchestrator_loaded": false,
   "status_in_report": null,
-  "cost_usd": 0.41,
   "source_unchanged": "yes (hash-verified)"
  },
  {
@@ -86,7 +80,6 @@
   ],
   "orchestrator_loaded": false,
   "status_in_report": null,
-  "cost_usd": 0.42,
   "source_unchanged": "yes (hash-verified)"
  },
  {
@@ -100,7 +93,6 @@
   ],
   "orchestrator_loaded": true,
   "status_in_report": "Passed with limitations",
-  "cost_usd": 1.8,
   "source_unchanged": "yes (hash-verified)"
  },
  {
@@ -114,7 +106,6 @@
   ],
   "orchestrator_loaded": true,
   "status_in_report": "Passed with limitations",
-  "cost_usd": 1.8,
   "source_unchanged": "yes (hash-verified)"
  }
 ]

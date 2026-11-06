@@ -22,17 +22,17 @@
 
 ## 2. Activation and routing with the packaged skill
 
-| Run | How it was called | Orchestrator loaded? | Routing | Status claimed | Cost |
-|---|---|---|---|---|---|
-| P1 | "Review the dashboard…" (installed plugin) | ✅ auto | — (4-turn probe) | — | $0.29 |
-| P2 | `/uiux-orchestrator:uiux-orchestrator` FAQ abrupt | ✅ | — (3-turn probe) | — | $0.28 |
-| P3 | `/uiux-orchestrator` accessibility review | ✅ | — (3-turn probe) | — | $0.32 |
-| E1 | "Plan name cut off… Fix it." | ❌, fixed directly | — | — | $0.49 |
-| E2 | "Review the dashboard…" | ✅ auto | built-in rubric; **skipped the installed `impeccable/critique`** as "heavy for a 53-line screen" | Passed with limitations | $0.56 |
-| E2b | same prompt, after the rule fix | ❌, reviewed directly | — | — | $0.41 |
-| E2c | same prompt, after the rule fix | ❌, chose `design:design-critique` | — | — | $0.42 |
-| E3a | `/uiux-orchestrator` + same prompt | ✅ | `impeccable/critique` with its A/B sub-agents | Passed with limitations | $1.80 |
-| E3b | `/uiux-orchestrator` + same prompt | ✅ | `impeccable/critique` with its A/B sub-agents | Passed with limitations | $1.80 |
+| Run | How it was called | Orchestrator loaded? | Routing | Status claimed |
+|---|---|---|---|---|
+| P1 | "Review the dashboard…" (installed plugin) | ✅ auto | — (4-turn probe) | — |
+| P2 | `/uiux-orchestrator:uiux-orchestrator` FAQ abrupt | ✅ | — (3-turn probe) | — |
+| P3 | `/uiux-orchestrator` accessibility review | ✅ | — (3-turn probe) | — |
+| E1 | "Plan name cut off… Fix it." | ❌, fixed directly | — | — |
+| E2 | "Review the dashboard…" | ✅ auto | built-in rubric; **skipped the installed `impeccable/critique`** as "heavy for a 53-line screen" | Passed with limitations |
+| E2b | same prompt, after the rule fix | ❌, reviewed directly | — | — |
+| E2c | same prompt, after the rule fix | ❌, chose `design:design-critique` | — | — |
+| E3a | `/uiux-orchestrator` + same prompt | ✅ | `impeccable/critique` with its A/B sub-agents | Passed with limitations |
+| E3b | `/uiux-orchestrator` + same prompt | ✅ | `impeccable/critique` with its A/B sub-agents | Passed with limitations |
 
 All read-only runs left the source unchanged (hash-verified for E2–E3b). Every "Passed with
 limitations" stated that nothing was rendered: the harness did not approve a dev server.
@@ -57,5 +57,3 @@ limitations" stated that nothing was rendered: the harness did not approve a dev
 3. **Small bug fixes go direct (E1).** This matches T04 in the triggering test and is acceptable:
    the fast path would do the same. The E1 fix itself was the correct root-cause change, the same
    one as R3.
-4. **Cost.** A review with `impeccable/critique` cost about 3–4× a review without it ($1.80 vs.
-   $0.41–0.56). Documented in `docs/usage.md`.
