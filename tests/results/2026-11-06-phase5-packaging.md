@@ -15,7 +15,9 @@
 | `claude plugin install uiux-orchestrator --marketplace <local path>` | Installed. `claude plugin details` shows 1 skill, about 200 always-on tokens and about 2.9k when invoked |
 | Skill name registered | `uiux-orchestrator:uiux-orchestrator`. `/uiux-orchestrator` also resolves to it (P3) |
 | Uninstall and marketplace removal | Clean. `claude plugin list` no longer shows it |
-| Install from GitHub (`--marketplace LongNguyen2312/uiux-orchestrator`) | **Pending:** the repository was not pushed yet when this was recorded |
+| Install from GitHub: `claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator` | Passed after the v1.0.0 push. It cloned, validated and installed v1.0.0. A `/uiux-orchestrator` probe (G1) loaded the skill from the plugin cache |
+| `claude plugin marketplace update` + `claude plugin update` | Both work. The update reported "already at the latest version (1.0.0)" |
+| GitHub Actions `validate` on the first push | success |
 | `npx skills add` | **Not tested:** running the external CLI was not permitted in this environment |
 
 ## 2. Activation and routing with the packaged skill
