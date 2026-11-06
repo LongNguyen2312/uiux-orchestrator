@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "uiux-orchestrator",
+  "description": "UIUX Orchestrator: adaptive UI/UX design and implementation skill for web and mobile.",
+  "owner": {
+    "name": "Long Nguyen",
+    "url": "https://github.com/LongNguyen2312"
+  },
+  "plugins": [
+    {
+      "name": "uiux-orchestrator",
+      "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter.",
+      "version": "1.0.0",
+      "source": "./",
+      "category": "design",
+      "homepage": "https://github.com/LongNguyen2312/uiux-orchestrator"
+    }
+  ]
+}

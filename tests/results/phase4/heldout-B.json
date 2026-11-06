@@ -1,0 +1,274 @@
+[
+  {
+    "id": "H08",
+    "platform": "flutter",
+    "intents": [
+      "ui-improvement"
+    ],
+    "workflow": "improvement",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/improvement.md",
+      "core/quality-gates.md",
+      "platforms/flutter.md (§0, §4, §5, §11)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Exact spec, no design judgment. Search Card usages first: if cards appear only on home, set CardTheme(Data) shape radius 12->16 (the token change asked for); if cards appear elsewhere, add a local RoundedRectangleBorder(16) on the home cards and offer the app-wide theme change. Keep the existing material import. Evidence: flutter analyze (L1), flutter build ios --simulator (L2), flutter run + simctl screenshot (L4)."
+  },
+  {
+    "id": "H07",
+    "platform": "web",
+    "intents": [
+      "design-exploration"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable live"
+    ],
+    "recommended_to_user": [
+      "prototype"
+    ],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, live, new-work; taste; emil/prototype)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Exploration branch of design.md: 3 distinct direction records plus quick prototypes behind a variant switch on the existing pricing page; no full build until the user picks. Direction slot stays built-in on the brand tokens: taste is out (avoid_when: refinement inside an existing system, kit-adoption consent, heavy) and new-work is out (incumbent system). Prices and claims come from the existing page and are never invented. Evidence: vite build (L2) + Chrome screenshots of each variant at 390/1280 (L4)."
+  },
+  {
+    "id": "H06",
+    "platform": "react-native-cli",
+    "intents": [
+      "animation",
+      "ui-bug-fix"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "animate-expo",
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (emil/animate-expo, swm/react-native-best-practices, impeccable/optimize, callstack/agent-device)",
+      "platforms/react-native.md (§0)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Optimize sub-type: measure, fix, re-measure. Measure with the RN perf monitor (JS vs UI thread fps) and a release build on the physical Android device. Likely causes: JS-thread work or setState per frame, a runOnJS in onUpdate, row re-renders, list virtualization. animate-expo covers thread placement and gesture handoff: use its decisions only, translated to Reanimated 3 and GH v2 APIs. swm is eliminated (needs New Architecture). No Reanimated upgrade or New Arch switch. L5 is reachable on the device."
+  },
+  {
+    "id": "H05",
+    "platform": "web",
+    "intents": [
+      "animation",
+      "ui-improvement"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Large",
+    "risk": "elevated",
+    "driver": null,
+    "selected_skills": [
+      "find-animation-opportunities",
+      "animate",
+      "choreograph",
+      "impeccable delight"
+    ],
+    "recommended_to_user": [
+      "review-animations"
+    ],
+    "asks_user": false,
+    "mode": "multi-agent",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (emil/find-animation-opportunities, animate, choreograph, prototype; impeccable/tone, animate)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Starts with discovery ('make it feel alive'), then design and build of the accepted proposals, since the user asked for edits. Tool: CSS and Vue's built-in <Transition>/<TransitionGroup>; no new library (GSAP would need a reason and permission). choreograph complements animate for the 4-step view swaps and staggers. impeccable delight handles the non-motion personality within existing tokens; emil owns the motion dimension. Elevated risk because onboarding is a critical path, so the reduced-motion path is mandatory. Large, so an independent fresh-context review against the motion checklist. Chrome gives L2 + L4 frame sampling; no mobile device for feel claims."
+  },
+  {
+    "id": "H04",
+    "platform": "android",
+    "intents": [
+      "accessibility",
+      "ui-review"
+    ],
+    "workflow": "accessibility",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable audit",
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/accessibility.md",
+      "workflows/review.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, audit; callstack/agent-device)",
+      "references/accessibility.md (§3)",
+      "core/execution-policy.md",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Review-only accessibility using review.md's finding format. impeccable audit (native variant) is default-on; skip its PRODUCT.md/DESIGN.md writes because the task is read-only. Render on a dedicated emulator via agent-device: UI/semantics tree for labels, roles and touch targets, plus font scale 2.0 and dark mode. TalkBack traversal only if the emulator image ships TalkBack; no tool installs and no test code written. Evidence: L0 + L4."
+  },
+  {
+    "id": "H03",
+    "platform": "react-native-expo",
+    "intents": [
+      "new-ui-design"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "animate-expo",
+      "impeccable audit",
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (expo shared, ui, native-ui, router; emil/animate-expo; swm; impeccable/shape, audit; callstack/agent-device)",
+      "platforms/react-native.md (§0)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Reuse the project's @gorhom/bottom-sheet (project truth). expo-ui is avoided: not installed, and adding it needs approval. Steps ux (built-in states: defaults, reset, apply, result count, empty), components, implement, validate, review; direction and system are skipped. The price range uses an existing slider if the project has one; otherwise it is built with installed Reanimated 4.7 + Gesture Handler, guided by animate-expo. No new dependency, no navigation change. Review: impeccable audit (pre-ship, Medium). L1 tsc, L2 export, L3/L4 via agent-device on the iOS sim; Android is unverified."
+  },
+  {
+    "id": "H02",
+    "platform": "ios",
+    "intents": [
+      "ui-bug-fix"
+    ],
+    "workflow": "bug-fix",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/bug-fix.md",
+      "core/quality-gates.md",
+      "platforms/ios.md (§0, §4, §6, §11, §12)"
+    ],
+    "registry_read_fully": false,
+    "notes": "Root cause: Xcode 27 builds can no longer opt out of Liquid Glass, so .toolbarBackground(Color.white, for: .tabBar) paints an opaque slab over the glass tab bar. Fix: remove the modifier (the iOS 26 target needs no #available gate), and express any brand color via .tint. agent-device is used only for evidence. Reproduce before and capture after on the iOS 27 sim (L4), scrolling content under the bar. Regression: light/dark, Increase Contrast, Reduce Transparency."
+  },
+  {
+    "id": "H01",
+    "platform": "web",
+    "intents": [
+      "ui-improvement"
+    ],
+    "workflow": "improvement",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "elevated",
+    "driver": null,
+    "selected_skills": [
+      "impeccable critique",
+      "impeccable polish"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/improvement.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, critique, polish, clarify, new-work; vercel/web-design-guidelines)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "'Trustworthy and polished' is a design judgment, so no fast path. audit-current: impeccable critique (heavy, but the audit is central to a Medium improvement); review: impeccable polish. Run as refinement in Operate mode, keeping tokens, Button and Input; skip PRODUCT.md/DESIGN.md creation. Changing the shared Button/Input or @theme tokens beyond this page needs permission. No invented trust claims or badges. Elevated risk because auth is a critical path. Evidence: svelte-check (L1), vite build (L2), Chrome L4 at 390/768/1280 including error, loading and focus states."
+  }
+]

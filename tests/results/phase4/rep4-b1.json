@@ -1,0 +1,474 @@
+[
+ {
+  "id": "S05",
+  "platform": "web",
+  "intents": [
+   "redesign"
+  ],
+  "workflow": "redesign",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Large",
+  "risk": "high",
+  "driver": "impeccable/new-work",
+  "selected_skills": [
+   "impeccable/new-work",
+   "impeccable/critique",
+   "vercel/web-design-guidelines"
+  ],
+  "recommended_to_user": [],
+  "asks_user": true,
+  "mode": "multi-agent",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/redesign.md",
+   "platforms/web.md §0",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Redesign/Replace (rebrand, rejects current look, whole product); high risk (large redesign of live product + token replacement) -> plan + new direction confirmed by user, one permission line for Impeccable PRODUCT.md/DESIGN.md, ask for new brand assets; critique = audit-current evidence base; independent reviewer = vercel/web-design-guidelines in a fresh subagent (network unknown -> fallback impeccable/audit in fresh context or ui-check); a11y audit yes; L2+L4 before/after via ui-check.mjs."
+ },
+ {
+  "id": "S09",
+  "platform": "web",
+  "intents": [
+   "animation"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "gsap/core",
+   "gsap/scrolltrigger",
+   "gsap/react"
+  ],
+  "recommended_to_user": [
+   "emil/review-animations"
+  ],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/animation.md",
+   "platforms/web.md §0 §9",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Design+build; tool step 2: GSAP already installed and used via useGSAP, pin+scrub is its strength -> gsap bundle (core+scrolltrigger+react, useGSAP cleanup, matchMedia reduced motion); emil/animate eliminated by avoid_when (GSAP chosen, API help needed); motion checklist self-applied, /review-animations recommended; evidence L2 + L4 via motion-trace.mjs/ui-check.mjs at 390/768/1280 incl. reduced motion; no perf/feel claims without L5."
+ },
+ {
+  "id": "S13",
+  "platform": "android",
+  "intents": [
+   "animation"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "android/navigation-event",
+   "callstack/agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/animation.md",
+   "platforms/android.md §0 §9",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Design+build of a custom predictive back on one route (not a routing change); android/navigation-event owns predictive-back (targetSdk 36: NavigationBackHandler/PredictiveBackHandler, no onBackPressed); if androidx.navigationevent is not already a dependency, adding it needs permission (else PredictiveBackHandler from activity-compose); agent-device on API 36 emulator for back-swipe frames; feel claims need L5 -> limitation."
+ },
+ {
+  "id": "S14",
+  "platform": "flutter",
+  "intents": [
+   "animation"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "callstack/agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/animation.md",
+   "platforms/flutter.md §0 §9",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Design+build; no registered Flutter motion skill -> built-in Hero (stable tag, transitionOnUserGestures) / go_router CustomTransitionPage, ref/flutter-animation; check both routes share a Navigator (moving routes = routing change -> ask); keep flutter/material.dart import and default PredictiveBackPageTransitionsBuilder; reduced motion via HeroMode/disableAnimations; agent-device on simulator+emulator for L4; 'smooth' feel needs L5 -> limitation."
+ },
+ {
+  "id": "S11",
+  "platform": "react-native-cli",
+  "intents": [
+   "animation"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "emil/animate-expo"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/animation.md",
+   "platforms/react-native.md §0 §9",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Design+build press feedback (animation workflow, not fast path); emil/animate-expo is the motion-build pick (press feedback + thread placement is the judgment asked) on New Arch/Reanimated 4.6/GH 3.2 (use its v3 hooks mapping); swm complement not needed; agent-device excluded (no install hint) -> adb screenshots show launch state only, press interaction unverified -> L2 (+L1) and limitation."
+ },
+ {
+  "id": "S38",
+  "platform": "android",
+  "intents": [
+   "ui-review"
+  ],
+  "workflow": "review",
+  "fast_path": false,
+  "mutation": "read-only",
+  "size": "Large",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "callstack/agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/review.md",
+   "platforms/android.md §1 §5-§7 §12",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Read-only platform-conventions review of the whole Android app; platform-conformance: dickwu/apple-design eliminated (Android-only, would impose Apple conventions) -> built-in platforms/android.md + Material 3; code-review slot has no Android candidate -> project lint; only the dimension asked (no ux-critique); agent-device renders screens on emulator, captures to temp; L0 + L4."
+ },
+ {
+  "id": "S01",
+  "platform": "web",
+  "intents": [
+   "ui-improvement"
+  ],
+  "workflow": "improvement",
+  "fast_path": true,
+  "mutation": "allowed",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/execution-policy.md",
+   "workflows/improvement.md",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Fast path: token change exactly as asked, --color-primary used only by Button.vue so not shared; change @theme --color-primary; safe default = a green that keeps >=4.5:1 contrast with the button label (stated in report); L1 + L2 + L4 via ui-check.mjs."
+ },
+ {
+  "id": "S27",
+  "platform": "web",
+  "intents": [
+   "new-ui-design"
+  ],
+  "workflow": "design",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": "taste/design-taste-frontend",
+  "selected_skills": [
+   "taste/design-taste-frontend",
+   "impeccable/audit",
+   "impeccable/critique"
+  ],
+  "recommended_to_user": [],
+  "asks_user": true,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/design.md",
+   "platforms/web.md §0",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "New marketing site, no system, Node 24 + Chrome, 'not AI-generated' = Taste's use_when -> Taste driver; one question batch: kit copy + house rules consent, and product facts/claims (build with marked placeholders meanwhile); if unanswered -> next row impeccable/new-work (also needs PRODUCT.md permission) then anthropic/frontend-design; port starter.html into Next.js components; review: impeccable/audit (tech-audit, a11y) + impeccable/critique since design quality is the main risk; L2 + L4."
+ },
+ {
+  "id": "S39",
+  "platform": "react-native-expo",
+  "intents": [
+   "ui-review"
+  ],
+  "workflow": "review",
+  "fast_path": false,
+  "mutation": "read-only",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "impeccable/critique",
+   "dickwu/apple-design",
+   "callstack/agent-device"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/review.md",
+   "platforms/react-native.md §0 §1 §5-§8 §12",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Read-only review of a 4-screen flow: ux-critique impeccable/critique (skip .impeccable snapshot/PRODUCT.md writes, detector B skipped on native), platform-conformance dickwu/apple-design for the iOS build (review mode only), Android conventions from platform file; agent-device renders on simulator+emulator to temp; L0 + L4."
+ },
+ {
+  "id": "S31",
+  "platform": "web",
+  "intents": [
+   "redesign"
+  ],
+  "workflow": "redesign",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Large",
+  "risk": "elevated",
+  "driver": null,
+  "selected_skills": [
+   "impeccable/critique",
+   "impeccable/audit"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "multi-agent",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/redesign.md",
+   "platforms/web.md §0",
+   "platforms/react-native.md §0 §11",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Refresh (one flow inside existing products, shared tokens package; stated as default) across apps/web and apps/mobile (also react-native-expo); no driver, expo/native-ui eliminated (own cross-platform system); critique = audit-current on both apps, impeccable/audit as different-slot review incl. a11y (onboarding = critical path -> elevated); only additive tokens; motion skills (emil/animate, emil/animate-expo) only if the audit finds motion issues; agent-device excluded -> web L4 via ui-check, Expo via simctl screenshots + labeled Expo --web preview -> limitations."
+ },
+ {
+  "id": "S10",
+  "platform": "react-native-expo",
+  "intents": [
+   "animation"
+  ],
+  "workflow": "animation",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "emil/animate-expo"
+  ],
+  "recommended_to_user": [
+   "emil/review-animations"
+  ],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed with limitations",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/animation.md",
+   "platforms/react-native.md §0 §9",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Improve sub-type on one flow: audit by motion checklist (improve-animations is for app-wide), recommend /review-animations; animate-expo decisions translated to Reanimated 3 / old arch (runOnJS, no worklets); swm eliminated (old arch); never upgrade Reanimated/SDK 52; agent-device excluded -> simctl launch screenshots + labeled Expo --web frame evidence; feel needs L5 -> limitations."
+ },
+ {
+  "id": "S35",
+  "platform": "web",
+  "intents": [
+   "new-ui-design"
+  ],
+  "workflow": "design",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": "anthropic/frontend-design",
+  "selected_skills": [
+   "anthropic/frontend-design",
+   "vercel/web-design-guidelines"
+  ],
+  "recommended_to_user": [],
+  "asks_user": true,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/design.md",
+   "platforms/web.md §0",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "No governing system (logo + 2 brand colors are brand facts to keep); Taste eliminated (Node 20 only, no install), impeccable excluded -> anthropic/frontend-design drives the single page; ask once for studio facts (history, team, projects) and build with marked placeholders meanwhile; review via vercel/web-design-guidelines (network unknown -> built-in checks + ui-check fallback) and built-in critique rubric; L2 + L4 (ui-check works on Node 20)."
+ },
+ {
+  "id": "S17",
+  "platform": "web",
+  "intents": [
+   "ui-review"
+  ],
+  "workflow": "review",
+  "fast_path": false,
+  "mutation": "read-only",
+  "size": "Small",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "impeccable/critique"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/review.md",
+   "platforms/web.md",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "Read-only one-screen UX review: impeccable/critique is the evaluator (review = deliverable, default-on despite Small); skip its snapshot/PRODUCT.md writes; render via Vite dev server + ui-check.mjs to temp; L0 + L4."
+ },
+ {
+  "id": "S03",
+  "platform": "web",
+  "intents": [
+   "new-ui-design"
+  ],
+  "workflow": "design",
+  "fast_path": false,
+  "mutation": "allowed",
+  "size": "Medium",
+  "risk": "low",
+  "driver": null,
+  "selected_skills": [
+   "impeccable/audit"
+  ],
+  "recommended_to_user": [],
+  "asks_user": false,
+  "mode": "single",
+  "best_status": "Passed",
+  "skill_files_consulted": [
+   "SKILL.md",
+   "core/intake.md",
+   "core/project-intelligence.md",
+   "core/decision-engine.md",
+   "core/skill-registry.md",
+   "registry/skills.yaml (searched entries)",
+   "workflows/design.md",
+   "platforms/web.md §0",
+   "core/quality-gates.md"
+  ],
+  "registry_read_fully": false,
+  "notes": "New screen inside an existing shadcn/tokens system -> no driver, direction/system/components steps skipped (Card, Button, Badge, Tabs, Switch reuse); ux via built-in (states: loading/empty/error, mark read, preferences); no motion library -> CSS only if needed; review tech-audit impeccable/audit incl. a11y; missing backend -> marked integration point; L2 + L4."
+ }
+]

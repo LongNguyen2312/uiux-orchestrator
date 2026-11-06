@@ -1,0 +1,8 @@
+{ "d1": {"platform": "web", "framework_contains": ["next"], "ui_library_contains": ["shadcn"], "arch": null},
+  "d2": {"platform": "ios", "framework_contains": ["uikit"], "framework_excludes": ["swiftui"], "arch": null},
+  "d3": {"platform": "android", "framework_contains": ["view"], "framework_excludes": ["compose"], "arch": null},
+  "d4": {"platform": "react-native-cli", "framework_contains": ["0.74"], "arch": "old", "motion_contains": ["reanimated 3"]},
+  "d5": {"platform": "flutter", "framework_contains": ["cupertino"], "arch": null},
+  "d6": {"platform": "react-native-expo", "framework_contains": ["expo"], "arch": "new", "note": "request targets the mobile app"},
+  "d7": {"platform": "react-native-expo", "framework_contains": ["52"], "arch": "old", "motion_contains": ["reanimated 3"]},
+  "d8": {"platform": "web", "framework_contains": ["angular"], "ui_library_contains": ["material"], "arch": null} }

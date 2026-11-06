@@ -1,0 +1,131 @@
+[
+ {
+  "id": "N01",
+  "skills_invoked": [],
+  "first_tools": [
+   "Bash",
+   "Glob",
+   "Read",
+   "Read",
+   "Read"
+  ],
+  "cost_usd": 0.259
+ },
+ {
+  "id": "N02",
+  "skills_invoked": [],
+  "first_tools": [
+   "Bash",
+   "Glob",
+   "Read",
+   "Read",
+   "Read"
+  ],
+  "cost_usd": 0.298
+ },
+ {
+  "id": "N03",
+  "skills_invoked": [],
+  "first_tools": [
+   "Bash",
+   "Read",
+   "Bash",
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.451
+ },
+ {
+  "id": "N04",
+  "skills_invoked": [],
+  "first_tools": [
+   "Glob",
+   "Bash",
+   "Read",
+   "Bash"
+  ],
+  "cost_usd": 0.241
+ },
+ {
+  "id": "T01",
+  "skills_invoked": [
+   "uiux-orchestrator"
+  ],
+  "first_tools": [
+   "Skill",
+   "Bash",
+   "Glob",
+   "Read",
+   "Bash"
+  ],
+  "cost_usd": 0.321
+ },
+ {
+  "id": "T02",
+  "skills_invoked": [
+   "uiux-orchestrator"
+  ],
+  "first_tools": [
+   "Skill",
+   "Bash",
+   "Read",
+   "Glob",
+   "Read"
+  ],
+  "cost_usd": 0.31
+ },
+ {
+  "id": "T03",
+  "skills_invoked": [
+   "uiux-orchestrator"
+  ],
+  "first_tools": [
+   "Skill",
+   "Bash",
+   "Read",
+   "Read",
+   "Glob"
+  ],
+  "cost_usd": 0.334
+ },
+ {
+  "id": "T04",
+  "skills_invoked": [],
+  "first_tools": [
+   "Bash",
+   "Grep",
+   "Glob",
+   "Read",
+   "Read"
+  ],
+  "cost_usd": 0.291
+ },
+ {
+  "id": "T05",
+  "skills_invoked": [
+   "dataviz"
+  ],
+  "first_tools": [
+   "Skill",
+   "Bash",
+   "Glob",
+   "Read",
+   "Read"
+  ],
+  "cost_usd": 0.32
+ },
+ {
+  "id": "T06",
+  "skills_invoked": [
+   "uiux-orchestrator"
+  ],
+  "first_tools": [
+   "Skill",
+   "Read",
+   "Bash",
+   "Read",
+   "Glob"
+  ],
+  "cost_usd": 0.307
+ }
+]

@@ -1,0 +1,1 @@
+{ "name": "d8", "dependencies": { "@angular/core": "20.3.0", "@angular/material": "20.2.0", "@angular/cdk": "20.2.0", "@angular/animations": "20.3.0" }, "scripts": { "build": "ng build", "test": "ng test" } }

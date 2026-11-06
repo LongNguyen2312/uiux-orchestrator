@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "notes": "Held-out scenarios written AFTER the skill fixes of Phase 4 and never used to tune the skill. Same schema and scoring as scenarios.json.",
+  "enums": {
+    "platform": [
+      "web",
+      "react-native-expo",
+      "react-native-cli",
+      "ios",
+      "android",
+      "flutter",
+      "unsupported"
+    ],
+    "intent": [
+      "new-ui-design",
+      "redesign",
+      "ui-improvement",
+      "animation",
+      "ui-review",
+      "ui-bug-fix",
+      "responsive",
+      "design-system",
+      "accessibility",
+      "ui-implementation",
+      "design-exploration"
+    ],
+    "workflow": [
+      "design",
+      "redesign",
+      "improvement",
+      "animation",
+      "review",
+      "bug-fix",
+      "design-system",
+      "accessibility"
+    ],
+    "status": [
+      "Passed",
+      "Passed with limitations",
+      "Needs review",
+      "Failed"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "H01",
+      "covers": [
+        "improvement",
+        "web"
+      ],
+      "request": "Make the sign-in page feel more trustworthy and polished.",
+      "project": "SvelteKit 2 + Tailwind v4; tokens in app.css @theme; shared Button and Input components; sign-in page uses them.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome, network available"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/polish",
+          "impeccable/critique",
+          "impeccable/clarify",
+          "impeccable/typeset",
+          "impeccable/layout",
+          "impeccable/audit",
+          "impeccable/harden",
+          "vercel/web-design-guidelines"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "impeccable/new-work",
+          "uupm/design-system",
+          "gsap/core",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Targeted refinements inside the existing system.",
+      "expected_validation": "Before/after L4.",
+      "pass_criteria": "Not fast path (design judgment); no driver."
+    },
+    {
+      "id": "H02",
+      "covers": [
+        "bug-fix",
+        "ios"
+      ],
+      "request": "Our tab bar looks wrong since we started building with Xcode 27 — the background is a flat white slab. Fix it.",
+      "project": "Native iOS, SwiftUI, deployment target iOS 26. TabView with .toolbarBackground(Color.white, for: .tabBar).",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Xcode 27, iOS 27 simulator; agent-device installed"
+      },
+      "expected": {
+        "platform": "ios",
+        "intent": [
+          "ui-bug-fix"
+        ],
+        "workflow": [
+          "bug-fix"
+        ],
+        "fast_path": null,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "emil/apple-design",
+          "vercel/web-design-guidelines",
+          "impeccable/new-work",
+          "emil/mobile-native"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Remove the custom tab bar background (Liquid Glass); brand via tint.",
+      "expected_validation": "Simulator before/after.",
+      "pass_criteria": "Root cause = custom background vs Liquid Glass; no web skills."
+    },
+    {
+      "id": "H03",
+      "covers": [
+        "new-screen",
+        "react-native-expo"
+      ],
+      "request": "Add a filter sheet to the search screen (price range, category, sort).",
+      "project": "Expo SDK 58, Expo Router, @gorhom/bottom-sheet 5 installed and used elsewhere, Reanimated 4.7, @expo/ui NOT installed.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24, iOS simulator, agent-device installed"
+      },
+      "expected": {
+        "platform": "react-native-expo",
+        "intent": [
+          "new-ui-design",
+          "ui-implementation"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "emil/animate-expo",
+          "impeccable/harden",
+          "impeccable/critique",
+          "impeccable/polish",
+          "impeccable/audit",
+          "callstack/agent-device",
+          "expo/native-ui"
+        ],
+        "must_not_select": [
+          "expo/ui",
+          "lucian/uxui",
+          "emil/animate",
+          "gsap/core",
+          "uupm/design-system",
+          "impeccable/new-work"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Sheet built with the installed @gorhom/bottom-sheet; native controls.",
+      "expected_validation": "Simulator L4 via agent-device.",
+      "pass_criteria": "Project truth: no @expo/ui; no web component sources."
+    },
+    {
+      "id": "H04",
+      "covers": [
+        "accessibility",
+        "review",
+        "android"
+      ],
+      "request": "Check the settings screen for accessibility issues only. Don't change the code.",
+      "project": "Native Android, Jetpack Compose, Material3 1.4.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator, agent-device installed"
+      },
+      "expected": {
+        "platform": "android",
+        "intent": [
+          "accessibility",
+          "ui-review"
+        ],
+        "workflow": [
+          "accessibility",
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "vercel/web-design-guidelines",
+          "emil/break-ui",
+          "impeccable/polish",
+          "impeccable/harden"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "A11y findings only (TalkBack, targets, contrast, semantics).",
+      "expected_validation": "L0 + emulator evidence.",
+      "pass_criteria": "audit (native) selected; no web reviewer; read-only."
+    },
+    {
+      "id": "H05",
+      "covers": [
+        "animation",
+        "web"
+      ],
+      "request": "The onboarding feels flat. Make it feel more delightful and alive.",
+      "project": "Vue 3 + Vite + Tailwind; no animation library installed; onboarding is 4 steps.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation",
+          "ui-improvement"
+        ],
+        "workflow": [
+          "animation",
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/animate",
+            "emil/find-animation-opportunities"
+          ]
+        ],
+        "may_select": [
+          "emil/animate",
+          "emil/find-animation-opportunities",
+          "emil/choreograph",
+          "impeccable/tone",
+          "impeccable/delight"
+        ],
+        "must_not_select": [
+          "gsap/core",
+          "gsap/timeline",
+          "emil/animate-expo",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Purposeful motion via CSS (no library added unasked).",
+      "expected_validation": "L2 + L4 frames; reduced motion.",
+      "pass_criteria": "Emil motion skill; no GSAP; no new dependency."
+    },
+    {
+      "id": "H06",
+      "covers": [
+        "animation",
+        "react-native-cli"
+      ],
+      "request": "The swipe-to-archive gesture on list rows stutters on Android.",
+      "project": "React Native CLI 0.74 (old architecture), react-native-reanimated 3.10, gesture-handler 2.16.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator and a physical Android device, agent-device installed"
+      },
+      "expected": {
+        "platform": "react-native-cli",
+        "intent": [
+          "animation",
+          "ui-bug-fix"
+        ],
+        "workflow": [
+          "animation",
+          "bug-fix"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/animate-expo",
+            "expo/expo-animation"
+          ]
+        ],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "swm/react-native-best-practices",
+          "emil/animation-performance",
+          "gsap/performance",
+          "emil/animate"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Gesture work moved to UI-thread worklets (Reanimated 3 APIs); no upgrade.",
+      "expected_validation": "Release build on the device (L5).",
+      "pass_criteria": "RN motion skill with legacy translation; SWM and web perf skills excluded."
+    },
+    {
+      "id": "H07",
+      "covers": [
+        "design-exploration",
+        "web"
+      ],
+      "request": "Show me three genuinely different visual directions for the pricing page so we can pick one.",
+      "project": "React 19 + Vite + Tailwind v4, existing brand tokens; pricing page exists.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "design-exploration"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/live",
+          "uupm/search",
+          "impeccable/critique",
+          "impeccable/shape",
+          "impeccable/tone"
+        ],
+        "must_not_select": [
+          "emil/prototype",
+          "gsap/core",
+          "uupm/design-system",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "2–3 direction records / quick variants; no full build before choice.",
+      "expected_validation": "L4 of each variant.",
+      "pass_criteria": "User-invoked prototype not auto-run; no driver commits a direction."
+    },
+    {
+      "id": "H08",
+      "covers": [
+        "small-change",
+        "flutter"
+      ],
+      "request": "Increase the corner radius of the cards on the home screen to 16.",
+      "project": "Flutter 3.47, Material 3, cards styled via CardTheme in ThemeData (radius 12).",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Flutter SDK, iOS simulator"
+      },
+      "expected": {
+        "platform": "flutter",
+        "intent": [
+          "ui-improvement",
+          "design-system"
+        ],
+        "workflow": [
+          "improvement",
+          "design-system"
+        ],
+        "fast_path": null,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "impeccable/layout",
+          "uupm/search",
+          "impeccable/critique"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "CardTheme radius changed once (it is what was asked).",
+      "expected_validation": "L1/L2 + L4.",
+      "pass_criteria": "Fast path; no design skill."
+    }
+  ]
+}

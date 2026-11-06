@@ -1,0 +1,3 @@
+// !$*UTF8*$!
+{ objects = { 1A2B /* Build configuration */ = { isa = XCBuildConfiguration; buildSettings = {
+  IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; INFOPLIST_KEY_UIMainStoryboardFile = Main; TARGETED_DEVICE_FAMILY = "1,2"; }; }; }; }

@@ -1,0 +1,326 @@
+[
+  {
+    "id": "S02",
+    "platform": "web",
+    "intents": [
+      "improvement"
+    ],
+    "workflow": "improvement",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/improvement.md",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Copy edit on one form button; fast path (improvement, no design judgment, Small/low). Check for an i18n string source, edit the label only; evidence L1 tsc/lint + L2 next build + L4 Chrome screenshot of the form."
+  },
+  {
+    "id": "S01",
+    "platform": "web",
+    "intents": [
+      "improvement"
+    ],
+    "workflow": "improvement",
+    "fast_path": true,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/execution-policy.md",
+      "workflows/improvement.md",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Token change is exactly what was asked and --color-primary has a single consumer (Button.vue), so risk stays low; fast path. Change the @theme token to a green that keeps text contrast at 4.5:1 (check hover/focus shades); L1-L2 + L4 in Chrome."
+  },
+  {
+    "id": "S14",
+    "platform": "flutter",
+    "intents": [
+      "animation"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "callstack/agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (callstack/agent-device entry)",
+      "platforms/flutter.md (\u00a70, \u00a76, \u00a79, \u00a711)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Design+build sub-type; motion-build has no Flutter skill, so built-in: Hero with stable 'product-$id' tag, transitionOnUserGestures, HeroMode reduced-motion, keep default page (CustomTransitionPage would drop the predictive back transition); confirm both routes share a Navigator (no route-tree change); agent-device for tap + capture on sim/emulator; smoothness claims need L5 on a device."
+  },
+  {
+    "id": "S13",
+    "platform": "android",
+    "intents": [
+      "animation"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "android/navigation-event",
+      "callstack/agent-device"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (android provider, callstack/agent-device)",
+      "platforms/android.md (\u00a70, \u00a76, \u00a79, \u00a711)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Predictive back is gesture-driven; android/navigation-event has high predictive-back authority. Verify androidx.navigationevent is already on the classpath; if it would be a new dependency, ask (that would make risk high) or use PredictiveBackHandler from activity-compose. Keep Navigation Compose untouched; agent-device drives the back gesture on the API 36 emulator; feel needs L5 on a device."
+  },
+  {
+    "id": "S12",
+    "platform": "ios",
+    "intents": [
+      "animation"
+    ],
+    "workflow": "animation",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/animation.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (emil/apple-design, twostraws/swiftui-pro, callstack/agent-device)",
+      "platforms/ios.md (\u00a70, \u00a77, \u00a79, \u00a711)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "No skill builds native iOS motion. Built-in: spring scale or symbolEffect(.bounce) on the heart (iOS 17), sensoryFeedback paired with the visual change, interruptible on rapid taps, reduced-motion fallback. emil/apple-design is web/principles only; swiftui-pro is meant for Large reviews. The environment has no device-automation tool, so only build + launch-state screenshots; haptics and feel need L5 on a device."
+  },
+  {
+    "id": "S17",
+    "platform": "web",
+    "intents": [
+      "review"
+    ],
+    "workflow": "review",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Small",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable critique"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/review.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, impeccable/critique, impeccable/audit)",
+      "core/quality-gates.md",
+      "core/execution-policy.md (mutation table)"
+    ],
+    "registry_read_fully": false,
+    "notes": "UX review of one screen. impeccable critique is heavy, so on a Small task it goes through the plain outcome test, and passes: it is the core of the ask and has high UX authority. Run it read-only (skip .impeccable snapshot and PRODUCT.md/DESIGN.md writes). Render the dashboard in Chrome at 390/768/1280 for L4; findings in the review format."
+  },
+  {
+    "id": "S03",
+    "platform": "web",
+    "intents": [
+      "design"
+    ],
+    "workflow": "design",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable shape",
+      "impeccable critique"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/design.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, new-work, shape, critique, audit, polish, harden, clarify)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "New screen inside an existing system: direction/system steps skipped (tokens + shadcn Card/Badge/Tabs/Switch fit), so no driver (new-work avoids existing-system work). Motion skipped (not requested). shape for the 'see and manage' structure (read/unread, bulk actions, preferences, empty/loading/error); critique as the Medium+ review evaluator; hardening/copy/polish are built-in. L2 next build + L4 Chrome."
+  },
+  {
+    "id": "S19",
+    "platform": "web",
+    "intents": [
+      "review",
+      "accessibility"
+    ],
+    "workflow": "review",
+    "fast_path": false,
+    "mutation": "read-only",
+    "size": "Medium",
+    "risk": "low",
+    "driver": null,
+    "selected_skills": [
+      "impeccable critique",
+      "impeccable audit"
+    ],
+    "recommended_to_user": [],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/review.md",
+      "workflows/accessibility.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, critique, audit; vercel/web-design-guidelines)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "'Full UX and accessibility' review means both dimensions: critique for UX and audit for a11y (WCAG 2.2 AA plus manual checks from references/accessibility.md). The 3-step flow is Medium. vercel/web-design-guidelines (optional, needs network) skipped because audit already covers a11y. Read-only: no context files written. Render all 3 steps in Chrome for L4."
+  },
+  {
+    "id": "S23",
+    "platform": "web",
+    "intents": [
+      "accessibility"
+    ],
+    "workflow": "accessibility",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Medium",
+    "risk": "elevated",
+    "driver": null,
+    "selected_skills": [
+      "impeccable audit"
+    ],
+    "recommended_to_user": [
+      "install @axe-core (axe) for an automated WCAG check, permission needed"
+    ],
+    "asks_user": false,
+    "mode": "single",
+    "best_status": "Passed with limitations",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/accessibility.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, impeccable/audit, vercel/web-design-guidelines)",
+      "core/execution-policy.md",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Signup is a critical path, so risk is elevated. If the custom form components have other usages, regression-check them too; if the fixes touch those shared components beyond the form, risk becomes high. axe is not installed and won't be installed without permission. Automated check: impeccable audit plus a detect URL scan of the running page. Manual checks: labels, errors, focus, 3.3.7/3.3.8 auth, target size. Contrast fixes that need token changes: ask. Ends L1 + L4 at 200% zoom with limitations."
+  },
+  {
+    "id": "S05",
+    "platform": "web",
+    "intents": [
+      "redesign"
+    ],
+    "workflow": "redesign",
+    "fast_path": false,
+    "mutation": "allowed",
+    "size": "Large",
+    "risk": "high",
+    "driver": "impeccable/new-work",
+    "selected_skills": [
+      "impeccable critique",
+      "impeccable new-work",
+      "vercel/web-design-guidelines"
+    ],
+    "recommended_to_user": [],
+    "asks_user": true,
+    "mode": "multi-agent",
+    "best_status": "Passed",
+    "skill_files_consulted": [
+      "SKILL.md",
+      "core/intake.md",
+      "core/project-intelligence.md",
+      "core/decision-engine.md",
+      "workflows/redesign.md",
+      "core/skill-registry.md",
+      "registry/skills.yaml (impeccable shared, new-work, critique, audit; taste/design-taste-frontend; uupm/design-system; vercel/web-design-guidelines)",
+      "core/quality-gates.md"
+    ],
+    "registry_read_fully": false,
+    "notes": "Redesign/Replace (rebrand, 'don't want to keep it'), 14 screens of a live product, so risk is high. Ask once, batched: brand assets/guidelines (can't be invented), new-work's PRODUCT.md interview, whether to ship behind a feature flag, and plan approval. impeccable critique audits the current UI. The new-work driver owns direction and tokens (old\u2192new list). Review uses a different evaluator: vercel guidelines plus an independent fresh-context reviewer subagent. Taste is skipped because this is app UI, not marketing. L2 + L4 before/after."
+  }
+]

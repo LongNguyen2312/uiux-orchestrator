@@ -1,0 +1,1956 @@
+{
+  "version": 4,
+  "notes": "Expected routing for uiux-orchestrator v0.3.0. Skill ids are registry ids (registry/skills.yaml). must_select is a list of any-of groups; may_select are acceptable optional picks; anything else selected counts as unnecessary. installed_skills 'all' = every skill in tests/harness/installed-skills-metadata.txt. fast_path/must_ask null = either is acceptable. excluded_skills lists skills removed from 'all' for that scenario.",
+  "enums": {
+    "platform": [
+      "web",
+      "react-native-expo",
+      "react-native-cli",
+      "ios",
+      "android",
+      "flutter",
+      "unsupported"
+    ],
+    "intent": [
+      "new-ui-design",
+      "redesign",
+      "ui-improvement",
+      "animation",
+      "ui-review",
+      "ui-bug-fix",
+      "responsive",
+      "design-system",
+      "accessibility",
+      "ui-implementation",
+      "design-exploration"
+    ],
+    "workflow": [
+      "design",
+      "redesign",
+      "improvement",
+      "animation",
+      "review",
+      "bug-fix",
+      "design-system",
+      "accessibility"
+    ],
+    "status": [
+      "Passed",
+      "Passed with limitations",
+      "Needs review",
+      "Failed"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "S01",
+      "covers": [
+        "small-change",
+        "web"
+      ],
+      "request": "Change the primary button color from blue to green.",
+      "project": "Vue 3 + Tailwind v4. The primary color is the @theme token --color-primary; only Button.vue uses it.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": true,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [],
+        "must_not_select": [
+          "impeccable/colorize",
+          "uupm/search",
+          "uupm/design-system",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Token changed once; hover/active/focus shades derived; contrast of on-primary text checked.",
+      "expected_validation": "L1/L2 + L4 of button states; contrast ratio stated.",
+      "pass_criteria": "No external skill; fast path; contrast checked."
+    },
+    {
+      "id": "S02",
+      "covers": [
+        "small-change",
+        "web"
+      ],
+      "request": "Rename the 'Submit' button on the new-project form to 'Create project'.",
+      "project": "Next.js 16 App Router + Tailwind + shadcn/ui.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": true,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [],
+        "must_not_select": [
+          "impeccable/clarify",
+          "impeccable/critique"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "One string changed (and its i18n key if any).",
+      "expected_validation": "L1 + quick L4 or test.",
+      "pass_criteria": "Fast path, no skill."
+    },
+    {
+      "id": "S03",
+      "covers": [
+        "new-screen",
+        "web"
+      ],
+      "request": "Create a notifications screen where users see and manage their notifications.",
+      "project": "Next.js 16 + Tailwind + shadcn/ui; tokens in globals.css; existing Card, Button, Badge, Tabs, Switch components; no motion library.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design",
+          "ui-implementation"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/shape",
+          "impeccable/harden",
+          "impeccable/polish",
+          "impeccable/critique",
+          "impeccable/audit",
+          "vercel/web-design-guidelines",
+          "uupm/search",
+          "impeccable/onboard",
+          "impeccable/clarify"
+        ],
+        "must_not_select": [
+          "impeccable/new-work",
+          "uupm/design-system",
+          "taste/design-taste-frontend",
+          "lucian/uxui",
+          "gsap/core",
+          "anthropic/frontend-design"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Screen built from existing shadcn components and tokens with loading/empty/error states.",
+      "expected_validation": "L2 + L4 at 390/768/1280, light/dark.",
+      "pass_criteria": "No driver (existing system); no new design system; states covered."
+    },
+    {
+      "id": "S04",
+      "covers": [
+        "new-screen",
+        "design-system",
+        "react-native-expo"
+      ],
+      "request": "Design the UI for our new habit tracker app: home, habit detail and add-habit screens.",
+      "project": "Fresh Expo SDK 58 project from the default template (Expo Router native tabs). No theme beyond the template's Colors constant.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24, iOS simulator; agent-device NOT installed",
+        "excluded_skills": [
+          "callstack/agent-device"
+        ]
+      },
+      "expected": {
+        "platform": "react-native-expo",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "impeccable/new-work",
+          "uupm/design-system",
+          "expo/native-ui"
+        ],
+        "must_select": [
+          [
+            "impeccable/new-work",
+            "uupm/design-system",
+            "expo/native-ui"
+          ]
+        ],
+        "may_select": [
+          "impeccable/shape",
+          "expo/design-system",
+          "expo/ui",
+          "emil/animate-expo",
+          "impeccable/critique",
+          "impeccable/polish",
+          "impeccable/harden",
+          "uupm/search",
+          "impeccable/audit",
+          "expo/router",
+          "dickwu/apple-design"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "lucian/uxui",
+          "gsap/core",
+          "emil/animate",
+          "emil/mobile-native",
+          "callstack/agent-device"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "One visual direction for an app (Operate), tokens/theme, three screens using native-feeling components.",
+      "expected_validation": "L1/L2; L4 screenshots on simulator launch state at best; interaction evidence limited without automation.",
+      "pass_criteria": "Exactly one driver; no web-only skills; status capped by missing automation."
+    },
+    {
+      "id": "S05",
+      "covers": [
+        "full-redesign",
+        "web",
+        "multi-agent"
+      ],
+      "request": "We're rebranding. Completely redesign our web app with a new look — the current design feels dated and we don't want to keep it.",
+      "project": "React 19 + Vite + CSS Modules, 14 screens, design tokens in tokens.css, live product with users.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome; subagents available"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "redesign"
+        ],
+        "workflow": [
+          "redesign"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "impeccable/new-work",
+          "uupm/design-system"
+        ],
+        "must_select": [
+          [
+            "impeccable/new-work",
+            "uupm/design-system"
+          ],
+          [
+            "impeccable/critique",
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "impeccable/shape",
+          "impeccable/polish",
+          "impeccable/harden",
+          "impeccable/document",
+          "vercel/web-design-guidelines",
+          "uupm/search",
+          "emil/find-animation-opportunities",
+          "emil/animate",
+          "impeccable/typeset",
+          "impeccable/colorize",
+          "impeccable/layout"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "gsap/core",
+          "lucian/uxui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": true,
+        "mode": [
+          "multi-agent",
+          "sequential-review"
+        ]
+      },
+      "expected_outputs": "Redesign Replace confirmed with the user; one driver; progressive implementation; independent review.",
+      "expected_validation": "Before/after L4 per screen; regression checks of shared components; independent reviewer.",
+      "pass_criteria": "Replace sub-type; asks before large-scope direction/tokens change; one driver; independent review mode."
+    },
+    {
+      "id": "S06",
+      "covers": [
+        "redesign",
+        "web"
+      ],
+      "request": "Redesign the settings page. Make it modern, clean and consistent with the existing application.",
+      "project": "Next.js 16 + Tailwind + shadcn/ui SaaS app; tokens in globals.css; no motion library.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "redesign"
+        ],
+        "workflow": [
+          "redesign"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ]
+        ],
+        "may_select": [
+          "impeccable/audit",
+          "impeccable/polish",
+          "impeccable/layout",
+          "vercel/web-design-guidelines",
+          "uupm/search",
+          "impeccable/clarify",
+          "impeccable/harden"
+        ],
+        "must_not_select": [
+          "impeccable/new-work",
+          "uupm/design-system",
+          "taste/design-taste-frontend",
+          "gsap/core",
+          "lucian/uxui",
+          "emil/break-ui",
+          "anthropic/frontend-design"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Refresh inside existing tokens/components.",
+      "expected_validation": "Before/after L4; L2.",
+      "pass_criteria": "Refresh; critique default-on; no driver."
+    },
+    {
+      "id": "S07",
+      "covers": [
+        "improvement",
+        "web"
+      ],
+      "request": "The typography on our article pages feels off. Make it read better.",
+      "project": "Astro 5 + Tailwind v4 blog; @tailwindcss/typography prose classes; system font stack.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/typeset",
+          "impeccable/critique",
+          "uupm/search",
+          "impeccable/layout",
+          "impeccable/polish"
+        ],
+        "must_not_select": [
+          "uupm/design-system",
+          "taste/design-taste-frontend",
+          "impeccable/new-work",
+          "gsap/core"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Targeted type changes (measure, scale, leading, rhythm) within the existing system.",
+      "expected_validation": "Before/after L4 at mobile and desktop.",
+      "pass_criteria": "Not fast path (design judgment); at most one focused typography specialist; no driver."
+    },
+    {
+      "id": "S08",
+      "covers": [
+        "animation",
+        "web"
+      ],
+      "request": "Add a pinned, scroll-driven storytelling section where an SVG line draws as the user scrolls.",
+      "project": "React 19 + Vite marketing site; motion 14 is installed and imported in several components for hovers.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/animate"
+          ]
+        ],
+        "may_select": [
+          "emil/choreograph",
+          "emil/animation-performance"
+        ],
+        "must_not_select": [
+          "gsap/core",
+          "gsap/scrolltrigger",
+          "gsap/plugins",
+          "gsap/react",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Sticky section with motion useScroll → pathLength; reduced-motion path; no new dependency.",
+      "expected_validation": "L2 + L4 frames at scroll offsets; reduced-motion emulation; feel/perf on device not verified.",
+      "pass_criteria": "Uses installed motion library; GSAP not added."
+    },
+    {
+      "id": "S09",
+      "covers": [
+        "animation",
+        "web"
+      ],
+      "request": "Add a pinned horizontal-scroll gallery to the case-studies page, scrubbed by vertical scroll.",
+      "project": "Next.js 16 + Tailwind; gsap 3.13 and @gsap/react are installed and used (useGSAP) in two components.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "gsap/scrolltrigger"
+          ],
+          [
+            "gsap/react",
+            "gsap/core"
+          ]
+        ],
+        "may_select": [
+          "emil/animate",
+          "gsap/core",
+          "gsap/react",
+          "gsap/performance",
+          "emil/choreograph"
+        ],
+        "must_not_select": [
+          "emil/animate-expo",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "ScrollTrigger pin+scrub via useGSAP with cleanup and matchMedia reduced motion.",
+      "expected_validation": "L2 + L4 at several scroll offsets; mobile fallback.",
+      "pass_criteria": "GSAP chosen because installed/used; React integration skill used."
+    },
+    {
+      "id": "S10",
+      "covers": [
+        "animation",
+        "react-native-expo"
+      ],
+      "request": "Improve the animation of the onboarding flow.",
+      "project": "Expo SDK 52 app, react-native-reanimated 3.16, newArchEnabled=false in app.json, Expo Router.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, iOS simulator; agent-device NOT installed",
+        "excluded_skills": [
+          "callstack/agent-device"
+        ]
+      },
+      "expected": {
+        "platform": "react-native-expo",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/animate-expo",
+            "expo/expo-animation"
+          ]
+        ],
+        "may_select": [
+          "emil/improve-animations"
+        ],
+        "must_not_select": [
+          "swm/react-native-best-practices",
+          "emil/animate",
+          "emil/mobile-native",
+          "gsap/core",
+          "taste/design-taste-frontend",
+          "callstack/agent-device"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "Reanimated 3 APIs (runOnJS), no upgrade; reduced motion.",
+      "expected_validation": "L1/L2; simulator evidence limited; L5 not reached.",
+      "pass_criteria": "animate-expo decisions with API translation; SWM excluded (needs New Arch); both aliases not loaded together."
+    },
+    {
+      "id": "S11",
+      "covers": [
+        "animation",
+        "react-native-cli"
+      ],
+      "request": "Cards in the feed feel dead when tapped. Add press feedback.",
+      "project": "React Native CLI app, RN 0.84 (New Architecture), react-native-reanimated 4.6 + react-native-worklets, gesture-handler 3.2, React Navigation 7.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Android emulator; agent-device NOT installed",
+        "excluded_skills": [
+          "callstack/agent-device"
+        ]
+      },
+      "expected": {
+        "platform": "react-native-cli",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/animate-expo",
+            "expo/expo-animation"
+          ]
+        ],
+        "may_select": [
+          "swm/react-native-best-practices"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "gsap/core",
+          "emil/mobile-native",
+          "expo/ui",
+          "expo/native-ui",
+          "callstack/agent-device"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "Pressable + Reanimated scale ~0.97 on the UI thread; reduced motion.",
+      "expected_validation": "L1/L2; L4 limited; L5 not reached.",
+      "pass_criteria": "RN motion skill chosen for a CLI app; no Expo-only skills."
+    },
+    {
+      "id": "S12",
+      "covers": [
+        "animation",
+        "ios"
+      ],
+      "request": "Animate the like button so it feels satisfying when tapped.",
+      "project": "Native iOS app, SwiftUI, deployment target iOS 17.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Xcode 27, iOS simulator; agent-device NOT installed",
+        "excluded_skills": [
+          "callstack/agent-device"
+        ]
+      },
+      "expected": {
+        "platform": "ios",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [],
+        "must_not_select": [
+          "emil/animate",
+          "emil/animate-expo",
+          "gsap/core",
+          "impeccable/animate",
+          "lucian/uxui",
+          "emil/mobile-native",
+          "callstack/agent-device"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "SwiftUI symbolEffect/spring + sensoryFeedback (iOS 17), reduced motion.",
+      "expected_validation": "L2 xcodebuild; L4 limited; haptics need L5.",
+      "pass_criteria": "No web or RN motion skill; built-in platform knowledge."
+    },
+    {
+      "id": "S13",
+      "covers": [
+        "animation",
+        "android"
+      ],
+      "request": "Make the back gesture from the order detail screen show a custom predictive back animation.",
+      "project": "Native Android, Jetpack Compose, Material3 1.4, targetSdk 36, Navigation Compose.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator API 36"
+      },
+      "expected": {
+        "platform": "android",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "android/navigation-event"
+          ]
+        ],
+        "may_select": [
+          "android/compose-performance",
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "emil/animate-expo",
+          "gsap/core",
+          "emil/apple-design"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "PredictiveBackHandler/NavigationEvent-driven transform with progress; system back preserved.",
+      "expected_validation": "L2; L4 frames on emulator if automation exists.",
+      "pass_criteria": "Android predictive-back skill selected."
+    },
+    {
+      "id": "S14",
+      "covers": [
+        "animation",
+        "flutter"
+      ],
+      "request": "Add a smooth transition from the product grid to the product detail page.",
+      "project": "Flutter 3.47, imports package:flutter/material.dart, go_router, Riverpod, targetSdk 36.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Flutter SDK, iOS simulator, Android emulator"
+      },
+      "expected": {
+        "platform": "flutter",
+        "intent": [
+          "animation"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "gsap/core",
+          "emil/animate",
+          "emil/animate-expo",
+          "lucian/uxui",
+          "android/navigation-event",
+          "swm/react-native-best-practices"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "Hero with stable tag; default page kept for predictive back; reduced motion.",
+      "expected_validation": "flutter analyze/build; L4 capture; L5 for feel.",
+      "pass_criteria": "No external motion skill; Flutter-native approach."
+    },
+    {
+      "id": "S15",
+      "covers": [
+        "animation",
+        "review",
+        "web"
+      ],
+      "request": "Audit all the animations in our web app and tell me what to improve. Don't change anything yet.",
+      "project": "React 19 + Next.js 16, motion 14 used in ~40 components, Tailwind transitions elsewhere.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation",
+          "ui-review"
+        ],
+        "workflow": [
+          "animation",
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/improve-animations"
+          ]
+        ],
+        "may_select": [
+          "emil/animation-performance"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "gsap/core",
+          "emil/remove-animations",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Prioritized motion audit + plans; no edits.",
+      "expected_validation": "L0 (+L4 where rendered); no files changed.",
+      "pass_criteria": "improve-animations chosen; read-only respected."
+    },
+    {
+      "id": "S16",
+      "covers": [
+        "animation",
+        "web"
+      ],
+      "request": "Our app feels slow — there's way too much animation everywhere. Tone it down.",
+      "project": "Vue 3 + Vite, @vueuse/motion and CSS transitions on most elements, page-load fade-ins on every card.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation",
+          "ui-improvement"
+        ],
+        "workflow": [
+          "animation"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "emil/remove-animations"
+          ]
+        ],
+        "may_select": [
+          "emil/improve-animations",
+          "impeccable/quieter",
+          "impeccable/tone"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "emil/find-animation-opportunities",
+          "gsap/core"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Purposeless motion removed; essential feedback kept.",
+      "expected_validation": "L2 + L4; performance comparison where possible.",
+      "pass_criteria": "Removal skill, no additive motion skills."
+    },
+    {
+      "id": "S17",
+      "covers": [
+        "review",
+        "web"
+      ],
+      "request": "Review the dashboard screen and identify UX problems. Do not modify the code.",
+      "project": "React 19 + Vite + Tailwind v4 (@theme tokens); dashboard with KPI tiles, chart placeholder, project list.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ]
+        ],
+        "may_select": [
+          "impeccable/audit",
+          "vercel/web-design-guidelines"
+        ],
+        "must_not_select": [
+          "emil/break-ui",
+          "impeccable/polish",
+          "impeccable/new-work",
+          "uupm/design-system",
+          "emil/animate",
+          "dickwu/apple-design"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Located findings with severity, impact, fix direction; no edits.",
+      "expected_validation": "L0 + L4 renders.",
+      "pass_criteria": "critique default-on; no fast path; read-only."
+    },
+    {
+      "id": "S18",
+      "covers": [
+        "review",
+        "ios"
+      ],
+      "request": "Review the checkout screen and identify UX problems. Do not modify the code.",
+      "project": "Native iOS, SwiftUI, iOS 17 target.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Xcode 27, iOS simulator"
+      },
+      "expected": {
+        "platform": "ios",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ]
+        ],
+        "may_select": [
+          "impeccable/audit",
+          "twostraws/swiftui-pro",
+          "callstack/agent-device",
+          "dickwu/apple-design"
+        ],
+        "must_not_select": [
+          "vercel/web-design-guidelines",
+          "emil/break-ui",
+          "emil/apple-design",
+          "emil/write-swift"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Findings with severity; native conventions applied; no edits.",
+      "expected_validation": "L0; L4 if simulator build possible (state basis).",
+      "pass_criteria": "critique (native) selected; no web reviewers."
+    },
+    {
+      "id": "S19",
+      "covers": [
+        "review",
+        "accessibility",
+        "web"
+      ],
+      "request": "Do a full UX and accessibility review of the checkout flow. Just the report for now.",
+      "project": "Next.js 16 + Tailwind + Radix; checkout is 3 steps.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-review",
+          "accessibility"
+        ],
+        "workflow": [
+          "review",
+          "accessibility"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ],
+          [
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "vercel/web-design-guidelines"
+        ],
+        "must_not_select": [
+          "emil/break-ui",
+          "impeccable/polish",
+          "impeccable/harden"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Merged UX + a11y findings with WCAG references; no edits.",
+      "expected_validation": "L0 + L4; automated a11y tool if present.",
+      "pass_criteria": "Both critique and audit."
+    },
+    {
+      "id": "S20",
+      "covers": [
+        "bug-fix",
+        "web"
+      ],
+      "request": "On the pricing page the plan name 'Professional Annual' is cut off on small phones. Fix it.",
+      "project": "React 19 + Vite + Tailwind v4; the plan heading has w-28 overflow-hidden whitespace-nowrap.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "ui-bug-fix"
+        ],
+        "workflow": [
+          "bug-fix"
+        ],
+        "fast_path": true,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [],
+        "must_not_select": [
+          "impeccable/adapt",
+          "impeccable/critique",
+          "uupm/search",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Minimal fix of the root cause; wider scope reported.",
+      "expected_validation": "Reproduction before + L4 after at 320/390.",
+      "pass_criteria": "Fast path; no skill."
+    },
+    {
+      "id": "S21",
+      "covers": [
+        "bug-fix",
+        "android"
+      ],
+      "request": "The 'Continue' button label is cut off on small screens (320dp wide). Fix it.",
+      "project": "Native Android, Jetpack Compose, Material 3.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator"
+      },
+      "expected": {
+        "platform": "android",
+        "intent": [
+          "ui-bug-fix"
+        ],
+        "workflow": [
+          "bug-fix"
+        ],
+        "fast_path": true,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "android/adaptive",
+          "impeccable/adapt",
+          "android/edge-to-edge",
+          "emil/mobile-native",
+          "dickwu/apple-design"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Remove fixed width / allow wrap; font scale 2.0 checked.",
+      "expected_validation": "L2 + L4 at 320dp and font scale 2.0.",
+      "pass_criteria": "Fast path; no skill."
+    },
+    {
+      "id": "S22",
+      "covers": [
+        "bug-fix",
+        "react-native-expo"
+      ],
+      "request": "After upgrading to SDK 54, the bottom of the settings list is hidden behind the Android navigation bar.",
+      "project": "Expo SDK 54, Expo Router stack, settings screen uses SafeAreaView from 'react-native' and a FlatList.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator"
+      },
+      "expected": {
+        "platform": "react-native-expo",
+        "intent": [
+          "ui-bug-fix"
+        ],
+        "workflow": [
+          "bug-fix"
+        ],
+        "fast_path": true,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "android/edge-to-edge",
+          "emil/animate-expo",
+          "expo/native-ui",
+          "emil/mobile-native"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Use react-native-safe-area-context insets / contentContainerStyle bottom padding (edge-to-edge mandatory in SDK 54).",
+      "expected_validation": "L4 on Android emulator with gesture and 3-button nav.",
+      "pass_criteria": "Root cause = edge-to-edge + deprecated SafeAreaView; no Compose skill."
+    },
+    {
+      "id": "S23",
+      "covers": [
+        "accessibility",
+        "web"
+      ],
+      "request": "Make our signup form WCAG 2.2 AA compliant.",
+      "project": "React 19 + Vite, custom form components, Tailwind.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome; axe not installed"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "accessibility"
+        ],
+        "workflow": [
+          "accessibility"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "vercel/web-design-guidelines",
+          "impeccable/harden",
+          "impeccable/clarify",
+          "impeccable/critique"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "uupm/design-system",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": null
+      },
+      "expected_outputs": "Labels, errors, focus, contrast, target size, authentication criteria fixed.",
+      "expected_validation": "Manual checks listed; automated tool unavailable → limitation.",
+      "pass_criteria": "audit default-on; status reflects missing automated tool."
+    },
+    {
+      "id": "S24",
+      "covers": [
+        "accessibility",
+        "flutter"
+      ],
+      "request": "Improve screen reader support on the product list screen.",
+      "project": "Flutter 3.47, Material 3, custom GestureDetector product tiles.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Flutter SDK, Android emulator"
+      },
+      "expected": {
+        "platform": "flutter",
+        "intent": [
+          "accessibility"
+        ],
+        "workflow": [
+          "accessibility"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "vercel/web-design-guidelines",
+          "emil/break-ui",
+          "emil/animate"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Semantics/MergeSemantics, labels, 48dp targets; meetsGuideline tests.",
+      "expected_validation": "Widget tests with guideline matchers; TalkBack manual check limited.",
+      "pass_criteria": "audit (native) used; no web reviewers."
+    },
+    {
+      "id": "S25",
+      "covers": [
+        "responsive",
+        "android"
+      ],
+      "request": "Make our app work well on tablets and foldables.",
+      "project": "Native Android, Jetpack Compose, Material3 1.4, targetSdk 36, phone-only layouts, Navigation Compose with bottom bar.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulators (phone, tablet, foldable)"
+      },
+      "expected": {
+        "platform": "android",
+        "intent": [
+          "responsive",
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "android/adaptive"
+          ]
+        ],
+        "may_select": [
+          "impeccable/adapt",
+          "android/edge-to-edge",
+          "callstack/agent-device",
+          "impeccable/audit"
+        ],
+        "must_not_select": [
+          "emil/mobile-native",
+          "uupm/design-system",
+          "emil/animate"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Window size classes; NavigationSuiteScaffold; list-detail where relevant.",
+      "expected_validation": "L4 on compact/medium/expanded emulators.",
+      "pass_criteria": "Android adaptive skill selected."
+    },
+    {
+      "id": "S26",
+      "covers": [
+        "design-system",
+        "web"
+      ],
+      "request": "Document our design system so new engineers know what tokens and components exist.",
+      "project": "React 19 + Vite + vanilla-extract tokens; 30 components in src/ui; no existing docs.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "design-system"
+        ],
+        "workflow": [
+          "design-system"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/document"
+        ],
+        "must_not_select": [
+          "uupm/design-system",
+          "impeccable/new-work",
+          "taste/design-taste-frontend",
+          "expo/design-system"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Docs derived from code (tokens, components, variants).",
+      "expected_validation": "Docs match code (spot checks).",
+      "pass_criteria": "No new system generated."
+    },
+    {
+      "id": "S27",
+      "covers": [
+        "new-screen",
+        "web",
+        "conflict"
+      ],
+      "request": "Build a marketing landing page for our developer tool that does AI code review. It must not look AI-generated.",
+      "project": "Empty repo; user wants Next.js. Brand colors not defined yet.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24 (default), Chrome installed"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "taste/design-taste-frontend",
+          "impeccable/new-work"
+        ],
+        "must_select": [
+          [
+            "taste/design-taste-frontend",
+            "impeccable/new-work"
+          ]
+        ],
+        "may_select": [
+          "lucian/uxui",
+          "vercel/web-design-guidelines",
+          "impeccable/critique",
+          "impeccable/audit",
+          "emil/animate"
+        ],
+        "must_not_select": [
+          "uupm/design-system",
+          "gsap/core",
+          "gsap/scrolltrigger"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": true
+      },
+      "expected_outputs": "One driver; Taste only with kit consent and a porting plan; real content asked for.",
+      "expected_validation": "L2 + L4 at 390–1440; driver checks.",
+      "pass_criteria": "Exactly one driver; asks for product facts/kit consent."
+    },
+    {
+      "id": "S28",
+      "covers": [
+        "missing-skills",
+        "redesign",
+        "web"
+      ],
+      "request": "Redesign the settings page. Make it modern, clean and consistent with the existing application.",
+      "project": "Next.js 16 + Tailwind + shadcn/ui; tokens in globals.css.",
+      "environment": {
+        "installed_skills": [],
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "redesign"
+        ],
+        "workflow": [
+          "redesign"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [],
+        "must_not_select": [
+          "impeccable/critique",
+          "impeccable/new-work",
+          "uupm/search",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [
+          "impeccable/critique"
+        ],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Built-in audit and redesign; no skill claimed; install hint for Impeccable (value_if_missing high).",
+      "expected_validation": "Before/after L4.",
+      "pass_criteria": "Zero skills selected; recommends Impeccable once."
+    },
+    {
+      "id": "S29",
+      "covers": [
+        "conflict",
+        "new-screen",
+        "web"
+      ],
+      "request": "Create a landing page for our meditation app. Our brand is lavender and deep violet — use it.",
+      "project": "Astro 5 + Tailwind v4, brand palette tokens (violet-600 primary, lavender-100 background) already defined.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "impeccable/new-work",
+          "anthropic/frontend-design"
+        ],
+        "must_select": [
+          [
+            "impeccable/new-work",
+            "anthropic/frontend-design"
+          ]
+        ],
+        "may_select": [
+          "impeccable/critique",
+          "impeccable/audit",
+          "vercel/web-design-guidelines",
+          "lucian/uxui",
+          "emil/animate"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "uupm/design-system"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Brand violet kept (user instruction outranks Taste house rule); Impeccable drives inside the brand.",
+      "expected_validation": "L2 + L4; contrast of violet text pairs.",
+      "pass_criteria": "Taste eliminated for violet brand; brand kept."
+    },
+    {
+      "id": "S30",
+      "covers": [
+        "unsupported-platform"
+      ],
+      "request": "Improve the layout of the settings dialog.",
+      "project": "Qt 6 desktop app, QML UI (SettingsDialog.qml), C++ backend.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Qt Creator not available in this environment"
+      },
+      "expected": {
+        "platform": "unsupported",
+        "intent": [
+          "ui-improvement"
+        ],
+        "workflow": [
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/layout",
+          "impeccable/critique"
+        ],
+        "must_not_select": [
+          "emil/animate",
+          "emil/animate-expo",
+          "gsap/core",
+          "lucian/uxui",
+          "android/adaptive",
+          "expo/native-ui",
+          "vercel/web-design-guidelines",
+          "uupm/design-system",
+          "taste/design-taste-frontend"
+        ],
+        "must_recommend": [],
+        "max_status": "Needs review",
+        "must_ask": null
+      },
+      "expected_outputs": "Platform-agnostic layout principles applied in QML; limitation stated.",
+      "expected_validation": "No build/render tool → Needs review with commands for the user.",
+      "pass_criteria": "Platform flagged unsupported; no platform-specific skills; honest status."
+    },
+    {
+      "id": "S31",
+      "covers": [
+        "multi-agent",
+        "redesign",
+        "react-native-expo",
+        "web"
+      ],
+      "request": "Redesign the whole onboarding flow in both our web app and our Expo app so they feel like one product.",
+      "project": "Monorepo: apps/web (Next.js 16 + Tailwind), apps/mobile (Expo SDK 58, Reanimated 4); shared tokens package; onboarding is 5 screens on each.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24, Chrome, iOS simulator; subagents available; agent-device NOT installed",
+        "excluded_skills": [
+          "callstack/agent-device"
+        ]
+      },
+      "expected": {
+        "platform": "web",
+        "platform_alternatives": [
+          "react-native-expo"
+        ],
+        "intent": [
+          "redesign"
+        ],
+        "workflow": [
+          "redesign"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ]
+        ],
+        "may_select": [
+          "impeccable/onboard",
+          "impeccable/audit",
+          "impeccable/polish",
+          "emil/animate",
+          "emil/animate-expo",
+          "expo/native-ui",
+          "vercel/web-design-guidelines",
+          "impeccable/shape",
+          "emil/find-animation-opportunities",
+          "impeccable/new-work",
+          "uupm/design-system",
+          "dickwu/apple-design"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "gsap/core",
+          "emil/mobile-native",
+          "callstack/agent-device"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed with limitations",
+        "must_ask": true,
+        "mode": [
+          "multi-agent",
+          "sequential-review"
+        ]
+      },
+      "expected_outputs": "Shared direction in the tokens package; per-platform implementation; independent review.",
+      "expected_validation": "Web L4; mobile evidence limited; regression on shared tokens.",
+      "pass_criteria": "High risk → plan shown + independent reviewer; platform-appropriate motion skills per app."
+    },
+    {
+      "id": "S32",
+      "covers": [
+        "visual-validation",
+        "ios"
+      ],
+      "request": "Check that the new checkout screen looks right on iPhone SE and iPad before we ship.",
+      "project": "Native iOS, SwiftUI, iOS 17 target; checkout screen already implemented.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Xcode is NOT installed in this environment; no simulator"
+      },
+      "expected": {
+        "platform": "ios",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/critique",
+          "impeccable/audit",
+          "dickwu/apple-design"
+        ],
+        "must_not_select": [
+          "callstack/agent-device",
+          "vercel/web-design-guidelines",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Needs review",
+        "must_ask": null
+      },
+      "expected_outputs": "Code-based review of size-class handling; explicit statement that no rendering was possible; commands for the user.",
+      "expected_validation": "No L4 possible.",
+      "pass_criteria": "Does not claim visual verification; status Needs review or lower."
+    },
+    {
+      "id": "S33",
+      "covers": [
+        "data-visualization",
+        "web"
+      ],
+      "request": "The dashboard has a 'Chart goes here' placeholder. Add the usage chart. I'm not sure which chart type is best for this data — pick the right one.",
+      "project": "React 19 + Vite + Tailwind v4; usage data = 6 monthly API-call totals; no chart library.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "new-ui-design",
+          "ui-implementation",
+          "ui-improvement"
+        ],
+        "workflow": [
+          "design",
+          "improvement"
+        ],
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [
+          [
+            "uupm/search"
+          ]
+        ],
+        "may_select": [],
+        "must_not_select": [
+          "uupm/design-system",
+          "lucian/uxui",
+          "taste/design-taste-frontend",
+          "gsap/core"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null
+      },
+      "expected_outputs": "Chart type justified by the data-viz specialist; tokens; accessible equivalent.",
+      "expected_validation": "L2 + L4 light/dark.",
+      "pass_criteria": "UUPM chart query used (default-on for explicit judgment); no chart dependency added without asking."
+    },
+    {
+      "id": "S34",
+      "covers": [
+        "user-invoked",
+        "animation",
+        "web"
+      ],
+      "request": "Review the animations I just added to the modal and toast components, and be strict.",
+      "project": "React 19 + motion 14; modal and toast animations in the current diff.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "platform": "web",
+        "intent": [
+          "animation",
+          "ui-review"
+        ],
+        "workflow": [
+          "animation",
+          "review"
+        ],
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "emil/animation-performance"
+        ],
+        "must_not_select": [
+          "emil/review-animations",
+          "emil/animate",
+          "emil/improve-animations",
+          "gsap/core"
+        ],
+        "must_recommend": [
+          "emil/review-animations"
+        ],
+        "max_status": "Passed",
+        "must_ask": false
+      },
+      "expected_outputs": "Built-in motion checklist review; recommends /review-animations to the user.",
+      "expected_validation": "L0 + L4 frames if rendered.",
+      "pass_criteria": "User-invoked skill recommended, not auto-run."
+    },
+    {
+      "id": "S35",
+      "covers": [
+        "new-screen",
+        "web",
+        "frontend-design"
+      ],
+      "request": "Create an 'About the studio' page for our architecture firm's website. It should feel distinctive, not like a template.",
+      "project": "Astro 5 + plain CSS; one existing page (home) with a logo and two brand colors in CSS variables; no design system or component library.",
+      "environment": {
+        "installed_skills": "all",
+        "excluded_skills": [
+          "impeccable (all commands)"
+        ],
+        "tools": "Node 20 only (no other Node installed), Chrome"
+      },
+      "expected": {
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": [
+          "anthropic/frontend-design"
+        ],
+        "must_select": [
+          [
+            "anthropic/frontend-design"
+          ]
+        ],
+        "may_select": [
+          "vercel/web-design-guidelines",
+          "lucian/uxui",
+          "emil/animate",
+          "uupm/search"
+        ],
+        "must_not_select": [
+          "taste/design-taste-frontend",
+          "impeccable/new-work",
+          "uupm/design-system",
+          "gsap/core"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null,
+        "platform": "web",
+        "intent": [
+          "new-ui-design"
+        ],
+        "workflow": [
+          "design"
+        ]
+      },
+      "expected_outputs": "One light driver sets direction within the two brand colors.",
+      "expected_validation": "L2 + L4 at 390/768/1280.",
+      "pass_criteria": "frontend-design chosen because Impeccable is absent and Taste fails Node 22."
+    },
+    {
+      "id": "S36",
+      "covers": [
+        "new-screen",
+        "web",
+        "frontend-design"
+      ],
+      "request": "Add a new Changelog page to our docs site.",
+      "project": "Next.js 16 docs site with an established theme: tokens in globals.css, MDX components, existing page templates.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 22, Chrome"
+      },
+      "expected": {
+        "fast_path": false,
+        "mutation": "allowed",
+        "driver": null,
+        "must_select": [],
+        "may_select": [
+          "impeccable/polish",
+          "impeccable/critique",
+          "impeccable/audit",
+          "impeccable/clarify",
+          "vercel/web-design-guidelines",
+          "impeccable/harden"
+        ],
+        "must_not_select": [
+          "anthropic/frontend-design",
+          "impeccable/new-work",
+          "taste/design-taste-frontend",
+          "uupm/design-system"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": null,
+        "platform": "web",
+        "intent": [
+          "new-ui-design",
+          "ui-implementation"
+        ],
+        "workflow": [
+          "design"
+        ]
+      },
+      "expected_outputs": "Page built from existing templates and tokens.",
+      "expected_validation": "L2 + L4.",
+      "pass_criteria": "No driver inside an established system."
+    },
+    {
+      "id": "S37",
+      "covers": [
+        "review",
+        "ios",
+        "apple-design"
+      ],
+      "request": "Review the tab bar, sheets and toolbars for HIG and Liquid Glass compliance before we submit to the App Store. Report only.",
+      "project": "Native iOS, SwiftUI, deployment target iOS 26, built with Xcode 27.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Xcode 27, iOS 27 simulator, agent-device installed"
+      },
+      "expected": {
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "dickwu/apple-design"
+          ]
+        ],
+        "may_select": [
+          "impeccable/critique",
+          "impeccable/audit",
+          "twostraws/swiftui-pro",
+          "callstack/agent-device"
+        ],
+        "must_not_select": [
+          "emil/apple-design",
+          "vercel/web-design-guidelines",
+          "emil/break-ui",
+          "impeccable/polish"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false,
+        "platform": "ios",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ]
+      },
+      "expected_outputs": "HIG/Liquid Glass findings with severity and file:line.",
+      "expected_validation": "L0 + simulator L4.",
+      "pass_criteria": "HIG reviewer (dickwu) chosen, not Emil's web skill of the same name."
+    },
+    {
+      "id": "S38",
+      "covers": [
+        "review",
+        "android",
+        "apple-design"
+      ],
+      "request": "Review our app's navigation and screens for platform-convention problems. Don't change the code.",
+      "project": "Native Android app (no iOS version), Jetpack Compose, Material3 1.4.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Android emulator, agent-device installed"
+      },
+      "expected": {
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique",
+            "impeccable/audit"
+          ]
+        ],
+        "may_select": [
+          "impeccable/critique",
+          "impeccable/audit",
+          "callstack/agent-device",
+          "android/adaptive"
+        ],
+        "must_not_select": [
+          "dickwu/apple-design",
+          "emil/apple-design",
+          "vercel/web-design-guidelines",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false,
+        "platform": "android",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ]
+      },
+      "expected_outputs": "Material/Android convention findings.",
+      "expected_validation": "L0 + emulator L4.",
+      "pass_criteria": "No Apple HIG reviewer on an Android-only app."
+    },
+    {
+      "id": "S39",
+      "covers": [
+        "review",
+        "react-native-expo",
+        "apple-design"
+      ],
+      "request": "Review the onboarding screens for UX and platform issues. Don't modify anything.",
+      "project": "Expo SDK 58 app shipped to iOS and Android; onboarding is 4 screens.",
+      "environment": {
+        "installed_skills": "all",
+        "tools": "Node 24, iOS simulator, Android emulator, agent-device installed"
+      },
+      "expected": {
+        "fast_path": false,
+        "mutation": "read-only",
+        "driver": null,
+        "must_select": [
+          [
+            "impeccable/critique"
+          ]
+        ],
+        "may_select": [
+          "dickwu/apple-design",
+          "impeccable/audit",
+          "callstack/agent-device",
+          "impeccable/onboard"
+        ],
+        "must_not_select": [
+          "emil/apple-design",
+          "vercel/web-design-guidelines",
+          "emil/break-ui"
+        ],
+        "must_recommend": [],
+        "max_status": "Passed",
+        "must_ask": false,
+        "platform": "react-native-expo",
+        "intent": [
+          "ui-review"
+        ],
+        "workflow": [
+          "review"
+        ]
+      },
+      "expected_outputs": "UX findings; iOS findings may use HIG reviewer.",
+      "expected_validation": "L0 + simulator/emulator L4.",
+      "pass_criteria": "critique selected; HIG reviewer optional for the iOS build."
+    }
+  ],
+  "answer_key_changes_v2": [
+    "S08: max_status Passed with limitations → Passed (animation gate needs L5 only for feel/perf claims)",
+    "S09: max_status Passed with limitations → Passed (animation gate needs L5 only for feel/perf claims)",
+    "S24: max_status → Passed (emulator + automation available)",
+    "S04: may_select += impeccable/audit (registry: pre-ship check on Medium+)",
+    "S25: may_select += impeccable/audit (registry: pre-ship check on Medium+)",
+    "S04: may_select += expo/router (new screens → navigation in scope)",
+    "S04: environment made consistent: agent-device excluded (was 'installed: all' + 'no device-automation tool'); now must not be selected",
+    "S10: environment made consistent: agent-device excluded (was 'installed: all' + 'no device-automation tool'); now must not be selected",
+    "S11: environment made consistent: agent-device excluded (was 'installed: all' + 'no device-automation tool'); now must not be selected",
+    "S12: environment made consistent: agent-device excluded (was 'installed: all' + 'no device-automation tool'); now must not be selected",
+    "S31: environment made consistent: agent-device excluded (was 'installed: all' + 'no device-automation tool'); now must not be selected"
+  ],
+  "answer_key_changes_v3": [
+    "S03: must_not += anthropic/frontend-design (existing design system)",
+    "S06: must_not += anthropic/frontend-design (existing design system)",
+    "S18: may += dickwu/apple-design (iOS review)",
+    "S17: must_not += dickwu/apple-design (web)",
+    "S21: must_not += dickwu/apple-design (Android)",
+    "S35–S39 added for anthropic/frontend-design and dickwu/apple-design",
+    "S21, S22: may += callstack/agent-device (v0.4 rule: validation-only tooling allowed on the fast path)"
+  ],
+  "answer_key_changes_v4": [
+    "S29: driver/must accept anthropic/frontend-design (key predates that integration; a single page with brand tokens fits its driver row)",
+    "S04: may += dickwu/apple-design (platform-conformance in the review of a new iOS-shipping app)",
+    "S32: may += dickwu/apple-design (iOS review; key predates the integration)",
+    "S31: may += dickwu/apple-design (platform-conformance for the Expo app's iOS build; key predates the integration)"
+  ]
+}

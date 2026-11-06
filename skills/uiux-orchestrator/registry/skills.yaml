@@ -1,0 +1,901 @@
+# uiux-orchestrator skill registry. Schema: core/skill-registry.md
+# Read only the entries you shortlisted (search "id: <provider>/<skill>") plus their provider block.
+# Facts below were verified against each skill's SKILL.md on verified_on; re-check on version drift.
+
+schema_version: 1
+
+providers:
+
+  # ───────────────────────────── Impeccable ─────────────────────────────
+  - provider: impeccable
+    source: https://github.com/pbakaus/impeccable
+    verified_version: "4.8.0"
+    verified_on: 2026-11-06
+    install_hint: "npx impeccable install"
+    shared:
+      required_inputs: ["command", "target path", "surface mode (Operate/Persuade/Read/Experience)", "refinement vs. replace", "decisions already made"]
+      names: [impeccable]                 # one skill; commands are passed as the first argument
+      kind: command
+      invocation: model
+      platforms: [web, ios, android, react-native, flutter]   # native via reference/ios.md, android.md
+      frameworks: [any]
+      requires:
+        - "runs <skill-dir>/scripts/impeccable context once per session (self-contained binary, downloaded on first run); if refused, the skill reads PRODUCT.md/DESIGN.md directly"
+      side_effects:
+        - "may create or update PRODUCT.md, DESIGN.md (+ sidecar) and surface briefs in the project"
+        - "first launcher run downloads a binary"
+      limitations:
+        - "`impeccable detect` on source files (JSX/TSX) runs pattern rules only; rendered checks (contrast, tiny text) need a URL scan of the running page. A clean source scan is not a pass (README, 4.8.0)."
+      notes: >-
+        Without a command it shows a menu and never auto-runs — always pass a command.
+        Vocabulary: Impeccable "refinement" keeps identity; Impeccable "redesign" replaces the
+        visual world and DESIGN.md. Map orchestrator Redesign/Refresh to refinement commands;
+        only Redesign/Replace may use new-work. Modes: Persuade (marketing), Operate (app UI),
+        Read (docs), Experience (portfolio) — choose from the surface.
+      brief: >-
+        Invoke with "<command> <target path>" (never bare). State the mode (Operate for app UI) and
+        "refinement: keep tokens/components/identity" unless Redesign/Replace. Run its context
+        launcher once (allowed: stays in its folder); if it wants to create PRODUCT.md/DESIGN.md in a
+        refinement or read-only task, skip and say so. Read craft-floor.md before edits (its rule).
+        Evaluate commands (critique/audit) return findings; merge them into the orchestrator's
+        severity scale.
+    skills:
+      - id: impeccable/new-work
+        names: [impeccable]               # invoked as a general new-surface request, or `shape` then new-work
+        role: driver
+        cost: heavy
+        slots: [visual-direction, design-system]
+        authority: {visual-direction: high, layout: high, typography: high, color: high}
+        capabilities: [choose a visual world for a new surface, mode-aware direction, build with craft floor, verify rendered result]
+        use_when: [new surface with no incumbent system, Redesign/Replace confirmed by user, marketing page when Taste is unavailable or unsuitable]
+        requires: ["its launcher requires init (PRODUCT.md interview) before a new surface; plan the interview into the question batch"]
+        side_effects: ["writes PRODUCT.md (init) and, on approval, DESIGN.md", "concept seeding contacts a remote API (network) per new-work.md 4.8.0", "may start a local decision page server (needs a free port and the user)"]
+        notes: "Mapping: new surface inside the project's existing system → Impeccable 'surface inside an established world' (extend tokens); Redesign/Replace → 'new world'."
+        avoid_when: [Redesign/Refresh or improvement inside an existing design system, another driver already owns the surface]
+        owns: [visual-direction, typography, color, layout, polish]
+        expected_outputs: [direction decisions, implemented surface, DESIGN.md]
+        priority: recommended
+        value_if_missing: high
+      - id: impeccable/shape
+        names: [impeccable]
+        role: specialist
+        slots: [ux-analysis]
+        authority: {ux: high}
+        capabilities: [plan UX/UI before code, task discovery]
+        use_when: [new screen or flow with unclear structure, Large design tasks]
+        avoid_when: [Small tasks, structure already defined by user or spec]
+        expected_outputs: [UX plan]
+        priority: recommended
+        value_if_missing: low
+      - id: impeccable/critique
+        names: [impeccable]
+        role: reviewer
+        cost: heavy
+        brief: >-
+          Its contract (critique.md, 4.8.0): Assessment A (design review) and B (detector + browser
+          evidence) as two isolated sub-agents when a sub-agent tool exists; B is skipped on native.
+          Run that core. Skip snapshot persistence (.impeccable/ writes) in read-only or refinement
+          tasks and the live-server overlay when no mutable browser tab is available; report both as
+          skipped. In non-interactive runs close with its own "Questions skipped: <reason>" line and
+          continue with the orchestrator's workflow. Start drafting other steps while A/B run.
+        slots: [ux-critique, platform-conformance]
+        authority: {ux-critique: high, visual-hierarchy: high, platform-conformance: medium}
+        capabilities: [heuristic UX critique with scoring, web and native]
+        use_when: [review requests, auditing current UI before redesign or improvement]
+        avoid_when: [bug with known cause, token-level change]
+        expected_outputs: [scored findings]
+        priority: recommended
+        value_if_missing: high
+      - id: impeccable/audit
+        names: [impeccable]
+        role: reviewer
+        cost: medium
+        slots: [tech-audit]
+        authority: {tech-audit: high, accessibility: high, performance: medium, responsive: medium}
+        capabilities: [technical checks a11y/perf/responsive, "native code-level variant (audit.native.md)"]
+        use_when: [review or accessibility workflows, pre-ship check on Medium+ tasks]
+        avoid_when: [Small tasks with a fast-path check]
+        expected_outputs: [findings by severity]
+        priority: recommended
+        value_if_missing: high
+      - id: impeccable/polish
+        names: [impeccable]
+        expected_outputs: ["final-pass refinements"]
+        role: specialist
+        slots: [polish]
+        authority: {polish: high}
+        capabilities: [final quality pass before shipping]
+        use_when: [end of design/redesign/improvement on Medium+ tasks]
+        avoid_when: [review-only, bug fix]
+        priority: recommended
+        value_if_missing: low
+      - id: impeccable/typeset
+        names: [impeccable]
+        capabilities: ["type hierarchy, scale and font choices"]
+        expected_outputs: ["typography changes"]
+        role: specialist
+        slots: [typography]
+        authority: {typography: high}
+        use_when: [hierarchy or font problems in existing UI]
+        avoid_when: [typography fixed by an existing type scale the user wants kept]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/colorize
+        names: [impeccable]
+        capabilities: ["strategic color within the brand"]
+        expected_outputs: ["color/token changes"]
+        role: specialist
+        slots: [color]
+        authority: {color: high}
+        use_when: [monochrome or flat UI needing strategic color within the brand]
+        avoid_when: [brand palette fixed and adequate]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/layout
+        names: [impeccable]
+        capabilities: ["spacing, rhythm and hierarchy fixes"]
+        expected_outputs: ["layout changes"]
+        role: specialist
+        slots: [layout]
+        authority: {layout: high, spacing: high}
+        use_when: [spacing, rhythm or hierarchy problems]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/adapt
+        names: [impeccable]
+        expected_outputs: ["layout changes per breakpoint/size class"]
+        role: specialist
+        slots: [responsive]
+        authority: {responsive: high}
+        capabilities: [adapt to devices/screen sizes, "native variant (adapt.native.md)"]
+        use_when: [multi-breakpoint or device-class work with unclear approach]
+        avoid_when: [single overflow bug with evident cause]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/harden
+        names: [impeccable]
+        expected_outputs: ["error/edge-case/i18n fixes"]
+        role: specialist
+        slots: [hardening]
+        authority: {edge-cases: high}
+        capabilities: [errors, i18n, edge cases, production readiness]
+        use_when: [new screens before ship, error/empty states missing]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/clarify
+        names: [impeccable]
+        capabilities: ["rewrite labels, errors, empty states"]
+        expected_outputs: ["copy changes"]
+        role: specialist
+        slots: [ux-copy]
+        authority: {copy: high}
+        use_when: [labels, errors, empty-state copy unclear]
+        avoid_when: [factual or legal copy the user owns]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/onboard
+        names: [impeccable]
+        capabilities: ["first-run flows, empty states, activation"]
+        expected_outputs: ["onboarding/empty-state design and changes"]
+        role: specialist
+        slots: [ux-analysis]
+        authority: {onboarding: high}
+        use_when: [first-run flows, empty states, activation]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/animate
+        names: [impeccable]
+        capabilities: ["purposeful motion within an Impeccable-driven build"]
+        expected_outputs: ["motion changes"]
+        role: specialist
+        slots: [motion-build]
+        authority: {motion: medium}
+        use_when: [Impeccable already drives the surface and motion is part of its build]
+        avoid_when: [Emil animate or animate-expo available and motion is the main task]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/optimize
+        names: [impeccable]
+        capabilities: ["UI performance diagnosis and fixes"]
+        expected_outputs: ["performance findings and fixes"]
+        role: specialist
+        slots: [motion-performance]
+        authority: {performance: medium}
+        use_when: [UI performance diagnosis without a platform-specific skill]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/tone
+        names: [impeccable]
+        expected_outputs: ["visual adjustments in the requested direction"]
+        role: specialist
+        slots: [visual-direction]
+        authority: {visual-direction: medium}
+        capabilities: ["bolder: amplify bland UI", "quieter: tone down loud UI", "distill: remove complexity", "delight / overdrive: personality and spectacle"]
+        use_when: [user asks to make UI bolder, calmer, simpler, more playful]
+        avoid_when: ["delight/overdrive on Operate surfaces (dashboards, settings) unless asked"]
+        priority: optional
+        value_if_missing: low
+      - id: impeccable/document
+        names: [impeccable]
+        expected_outputs: ["DESIGN.md derived from code"]
+        role: specialist
+        slots: [design-system]
+        authority: {design-system: high}
+        capabilities: ["document: DESIGN.md from existing code", "extract: pull tokens/components into the system"]
+        use_when: [design-system document or extract]
+        avoid_when: [project already maintains a design system doc in another format the user wants kept]
+        side_effects: [writes DESIGN.md]
+        priority: recommended
+        value_if_missing: low
+      - id: impeccable/live
+        names: [impeccable]
+        expected_outputs: ["variants in the running app to choose from"]
+        role: specialist
+        slots: [design-exploration]
+        platforms: [web]
+        capabilities: ["live: pick elements in the browser and iterate variants", "generate: n variants of a named element"]
+        use_when: [design exploration on a running web app]
+        requires: [running dev server, browser]
+        priority: optional
+        value_if_missing: low
+
+  # ───────────────────────────── UI UX Pro Max ─────────────────────────────
+  - provider: uupm
+    source: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+    verified_version: "b7d5353"
+    verified_on: 2026-11-06
+    install_hint: "/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill · /plugin install ui-ux-pro-max@ui-ux-pro-max-skill"
+    shared:
+      names: [ui-ux-pro-max, "ui-ux-pro-max:ui-ux-pro-max"]
+      kind: tool
+      invocation: model
+      platforms: [web, react-native, ios, android, flutter]
+      requires: ["python3 (no packages)", "run scripts/search.py by the skill's absolute path"]
+      limitations:
+        - "stack guides: react, nextjs, vue, svelte, astro, nuxtjs, nuxt-ui, angular, laravel, swiftui, react-native, flutter, jetpack-compose, html-tailwind, shadcn, threejs + desktop; no UIKit or Android Views"
+        - "results are recommendations; a 0-result search must be reported as built-in defaults, never as data"
+      notes: "One dominant intent, 2-5 terms per query. Sibling skills design, brand, banner-design, slides, design-system, ui-styling are not registered (logo/CIP/banners/decks/shadcn styling out of scope or duplicated)."
+    skills:
+      - id: uupm/search
+        required_inputs: ["one design question as 2-5 terms", "domain and/or detected stack"]
+        role: specialist
+        slots: [ux-analysis, typography, color, layout, data-visualization]
+        authority: {ux-guidelines: medium, color: medium, typography: medium, data-visualization: high}
+        capabilities: ["--domain ux|color|typography|google-fonts|chart|landing|icons|style|product|gsap|react|web", "--stack <stack> implementation guidance", "--rtl"]
+        use_when: [one targeted design question the project does not answer, chart type choice (default-on when the user asks which chart), font pairing for a new surface, RTL support]
+        avoid_when: [question already settled by project tokens or an earlier handoff decision]
+        expected_outputs: [ranked recommendations with rationale]
+        brief: >-
+          One query per question: python3 -I <skill-dir>/scripts/search.py "<2-5 terms>" --domain <d>
+          [--stack <detected>]. Check the top result fits product and platform; retry once narrower;
+          0 results → say "built-in default". Never --persist or --force without user consent.
+        priority: recommended
+        value_if_missing: low
+      - id: uupm/design-system
+        required_inputs: ["product type, industry, keywords", "project name", "persist location (only with consent)"]
+        expected_outputs: ["pattern, style, palette, typography, effects, anti-patterns (optionally MASTER.md)"]
+        role: driver
+        slots: [visual-direction, design-system]
+        authority: {visual-direction: medium, color: high, typography: high}
+        capabilities: ["--design-system: product type → pattern, style, palette, typography, effects, anti-patterns", "dials --variance --motion --density", "--persist writes design-system/<slug>/MASTER.md (+ pages/)"]
+        use_when: [new product or page with no design system, user wants a data-backed direction for app UI]
+        avoid_when: ["existing tokens/design system (Refresh, improvement, bug fix)", another driver owns the surface]
+        side_effects: ["--persist writes design-system/<slug>/; never pass --force without user authorization"]
+        owns: [color, typography]
+        priority: recommended
+        value_if_missing: low
+
+  # ───────────────────────────── Taste ─────────────────────────────
+  - provider: taste
+    source: https://github.com/Leonxlnx/taste-skill
+    verified_version: "2.5.0"
+    verified_on: 2026-11-06
+    install_hint: 'npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"'
+    skills:
+      - id: taste/design-taste-frontend
+        names: [design-taste-frontend, "taste-skill:design-taste-frontend"]
+        required_inputs: ["business kind, what is sold, main action", "real content and assets", "kit consent"]
+        expected_outputs: ["built marketing page from its kit", "checker, layout and perf results"]
+        kind: skill
+        role: driver
+        cost: heavy
+        invocation: model
+        slots: [visual-direction]
+        authority: {marketing-visual-direction: high, marketing-copy: high}
+        platforms: [web]
+        frameworks: [any]
+        capabilities: ["company/marketing website pipeline by business kind (software, gaming, tech, product, service, place)", dealt palettes/fonts/heroes, real photographs and brand icons, 100+ headless browser checks at 1440/1024/820/768/390, perf checks]
+        use_when: [new or fully replaced landing/company/product/shop/venue website, "'looks generic / AI-made' on a marketing page"]
+        avoid_when: [app UI, dashboards, settings, forms-heavy product UI, native or RN or Flutter, refinement inside an existing site design system, "brand that uses violet/lavender (house rule forbids it)", page that needs scroll reveals/parallax, user unwilling to adopt its kit]
+        requires: ["Node 22+", "Chrome, Edge or Chromium (CHROME_PATH)", "ffmpeg optional"]
+        owns: [visual-direction, layout, typography, color, ux-copy, polish]
+        brief: >-
+          Check Node ≥ 22 (an installed alternate runtime, e.g. via nvm, counts as available, but
+          switching to it is an environment change: add it to the question batch) and an installed
+          Chrome/Edge/Chromium (default install path is enough; CHROME_PATH only if non-standard).
+          If Node ≥ 22 is not installed at all, eliminate it (do not install Node). Get user consent for the kit copy and house rules. For a
+          framework project, plan the port from its starter.html into components before building.
+        side_effects: ["copies its assets/ kit into the project and starts from starter.html", "writes .taste-skill/ history files and names.json", "photo fetch may use network"]
+        limitations: ["pipeline is built on its own HTML starter/system.css; no framework-porting guidance found — porting into Next.js/Vue components is manual work to plan for", "house rules: no captions, one section per screen, no scroll-reveal, never violet"]
+        priority: recommended
+        value_if_missing: low
+        notes: "Before choosing: confirm prerequisites and that the user accepts the kit. Older Taste variants live in Leonxlnx/taste-skill-classics and are not registered."
+
+  # ───────────────────────────── Lucian ─────────────────────────────
+  - provider: lucian
+    source: https://github.com/Seokwoooo/lucian-uxui
+    verified_version: "0067ad8"
+    verified_on: 2026-11-06
+    install_hint: "npx skills add Seokwoooo/lucian-uxui"
+    skills:
+      - id: lucian/uxui
+        names: [lucian-uxui]
+        required_inputs: ["the missing UI part", "framework, styling and theming approach"]
+        expected_outputs: ["ported element(s) with MIT header", "'#ID title: where used, what adapted' list"]
+        kind: tool
+        role: specialist
+        invocation: model
+        slots: [component-reference]
+        authority: {interaction-pattern: high}
+        platforms: [web]
+        frameworks: [any]
+        capabilities: ["search/list/get from 400 elements (001-200 interface parts, 201-400 sections and motion)", "tokens: --ux-* light/dark tokens", "port into React/Vue/Svelte/Astro/HTML"]
+        use_when: ["a specific interactive part is missing from the project and needs a polished reference (pricing toggle, bottom sheet, stepper, OTP, data viz widget)"]
+        avoid_when: ["project UI library already provides the part (shadcn, MUI, etc.)", native/RN/Flutter code generation, whole-page layout]
+        requires: ["node", "HTTPS to lucianlabs.dev or raw.githubusercontent.com (curl fallback)"]
+        side_effects: ["ported files must keep the element's MIT header comment"]
+        limitations: ["never invent element IDs; use only code returned by get", "port structure and motion values as-is; adapt framework, data, colors"]
+        brief: >-
+          node <skill-dir>/scripts/lucian-uxui.mjs search <part words> → get <ids> (≤3) → tokens once.
+          Port into the project's component style; map --ux-* tokens to project tokens (no new color
+          values); keep the MIT header comment; reuse project primitives (Button, Field) inside it.
+          Report "#ID title: where used, what adapted".
+        priority: optional
+        value_if_missing: low
+        notes: "Native projects: may read an element's spec (detents, spring values, timing) as reference only; never port its HTML/JS."
+
+  # ───────────────────────────── Emil Kowalski ─────────────────────────────
+  - provider: emil
+    source: https://github.com/emilkowalski/skills
+    verified_version: "c8a7962"
+    verified_on: 2026-11-06
+    install_hint: "npx skills@latest add emilkowalski/skills"
+    shared:
+      required_inputs: ["target component/flow", "platform and installed motion stack", "reduced-motion requirement"]
+      kind: skill
+      role: specialist
+      invocation: model
+      frameworks: [any]
+    skills:
+      - id: emil/animate
+        names: [animate, "emil:animate"]
+        expected_outputs: ["decision record (purpose, tool, properties, curve/duration or spring, interruption, exit)", "implementation"]
+        complements: [emil/choreograph]
+        slots: [motion-build]
+        authority: {motion: high}
+        platforms: [web]
+        capabilities: ["decision sequence: should it animate, purpose, cheapest tool (CSS transition → @starting-style → CSS animation → WAAPI → Motion), properties, curve/duration or spring, interruption/exit, reduced motion"]
+        use_when: [new web animation or transition]
+        avoid_when: [native/RN/Flutter, GSAP already chosen and only API help needed]
+        delegates_to: [emil/pick-ui-library]
+        limitations: ["does not cover GSAP; tool ladder ends at Motion"]
+        brief: >-
+          Give it: the element, the installed motion library, and "reduced motion required". Take
+          back its decision record (purpose, tool, properties, curve/duration or spring, interruption,
+          exit) into the handoff, then implement with the installed library.
+        priority: recommended
+        value_if_missing: high
+      - id: emil/animate-expo
+        names: [animate-expo, "emil:animate-expo"]
+        expected_outputs: ["decision record", "Reanimated/Gesture Handler implementation (translated to the installed versions)"]
+        equivalent_to: [expo/expo-animation]
+        complements: [swm/react-native-best-practices]   # only for library API detail (Skia, layout animations) on New Architecture
+        slots: [motion-build, motion-performance]
+        authority: {motion: high}
+        platforms: [react-native]
+        capabilities: [RN/Expo motion decisions, Reanimated + Gesture Handler + Expo Router + expo-haptics implementation, thread placement, press feedback, haptics, reduced motion]
+        use_when: [any animation or gesture work in RN/Expo]
+        brief: >-
+          Give it the Reanimated, Gesture Handler and RN versions and New Architecture status from the
+          profile. Follow its build sequence; translate APIs when versions differ from its samples.
+        avoid_when: [web, native iOS/Android, Flutter]
+        limitations:
+          - "code samples target Reanimated 4 + react-native-worklets (New Architecture) and Gesture Handler v2 (its RECIPES note the v3 hooks mapping). On Reanimated 3 (unmaintained) or old architecture: use its decisions only and translate APIs (scheduleOnRN → runOnJS, worklets package → reanimated built-ins); never upgrade without permission"
+          - "recommends judging feel in a release build on the slowest device — state as a limitation if not possible"
+        priority: recommended
+        value_if_missing: high
+      - id: emil/choreograph
+        names: [choreograph]
+        capabilities: ["sequence and overlap of several moving elements"]
+        expected_outputs: ["choreography plan and implementation"]
+        slots: [motion-build]
+        authority: {motion-choreography: high}
+        platforms: [web]
+        use_when: ["several elements animating together: staggers", hero entrances, view swaps, multi-step flows]
+        avoid_when: [single-element animation]
+        priority: optional
+        value_if_missing: low
+      - id: emil/find-animation-opportunities
+        names: [find-animation-opportunities]
+        expected_outputs: ["proposals with exact values (no code changes)"]
+        role: reviewer
+        slots: [motion-discovery]
+        authority: {motion: high}
+        platforms: [web, react-native]
+        capabilities: [read-only search for missing motion with exact values, rejects decorative motion]
+        use_when: ["'make it feel alive', polish or redesign where motion value is unknown"]
+        avoid_when: [user already specified the animation]
+        priority: optional
+        value_if_missing: low
+        notes: "Examples are web-oriented; on RN translate values through animate-expo principles."
+      - id: emil/improve-animations
+        names: [improve-animations]
+        role: reviewer
+        slots: [motion-review]
+        authority: {motion: high}
+        platforms: [web, react-native]
+        capabilities: [codebase-wide motion audit, "prioritized self-contained plans; read-only"]
+        use_when: ["'improve/audit the animations' across an app or several flows"]
+        avoid_when: ["single component (review it directly)", review-only of one diff]
+        expected_outputs: [prioritized audit, implementation plans]
+        brief: "Read-only. Ask for the audit + plans; the orchestrator (or the user) decides which plans to implement in a separate step."
+        priority: recommended
+        value_if_missing: low
+      - id: emil/review-animations
+        names: [review-animations]
+        expected_outputs: ["findings table + verdict"]
+        role: reviewer
+        invocation: user
+        slots: [motion-review]
+        authority: {motion: high}
+        platforms: [web, react-native]
+        capabilities: [strict motion review, findings table + verdict]
+        use_when: ["reviewing implemented motion — recommend /review-animations to the user"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/remove-animations
+        names: [remove-animations]
+        expected_outputs: ["removed motion and cleanup"]
+        slots: [motion-review]
+        authority: {motion: high}
+        platforms: [web, react-native]
+        capabilities: ["finds and removes unneeded motion; edits only to subtract"]
+        use_when: ["'feels slow', 'too much animation', 'tone down motion'"]
+        avoid_when: [review-only]
+        priority: optional
+        value_if_missing: low
+      - id: emil/animation-performance
+        names: [animation-performance]
+        capabilities: ["frame-budget diagnosis, composite-only properties, CSS vs WAAPI vs rAF"]
+        expected_outputs: ["cause of jank and fixes"]
+        slots: [motion-performance]
+        authority: {motion-performance: high}
+        platforms: [web]
+        use_when: [janky web animation, property choice, CSS vs WAAPI vs rAF]
+        avoid_when: [native, "GSAP-specific perf (use gsap/performance)"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/apple-design
+        names: [apple-design]   # collides with dickwu/apple-design — disambiguate by SKILL.md description ("translated for the web")
+        expected_outputs: ["web interaction/motion guidance"]
+        slots: [motion-build]
+        authority: {gesture-feel: high}
+        platforms: [web]
+        capabilities: ["Apple fluid-motion principles translated for the web: springs", velocity handoff, rubber-banding, materials, typography]
+        use_when: [web gesture-driven UI, sheets, drags with Apple-like feel]
+        avoid_when: ["native iOS implementation (use Apple docs; read this only for principles)"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/mobile-native
+        names: [mobile-native]
+        expected_outputs: ["CSS/meta fixes for web apps on phones"]
+        slots: [responsive]
+        authority: {mobile-web: high}
+        platforms: [web]
+        capabilities: ["web app feel on phones: 100vh", tap highlight, input zoom, safe areas, sticky hover]
+        use_when: [web app viewed on phones, PWA]
+        avoid_when: [React Native, iOS, Android, "Flutter — it is web-only despite its name"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/break-ui
+        names: [break-ui]
+        expected_outputs: ["worst-case data report with fixes"]
+        role: reviewer
+        slots: [hardening]
+        authority: {edge-cases: high}
+        platforms: [web]
+        capabilities: [worst-case data stress test, report with fixes]
+        use_when: [stress-testing a web component or screen]
+        avoid_when: ["review-only (it renders a demo toggle in the UI)", native]
+        side_effects: ["adds a 'Demo data / Worst case' toggle to the UI"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/design-eng
+        names: [emil-design-eng]
+        capabilities: ["polish and motion philosophy (umbrella)"]
+        expected_outputs: ["review notes / guidance"]
+        slots: [motion-build, polish]
+        authority: {polish: medium, motion: medium}
+        platforms: [web]
+        use_when: [no focused Emil sibling fits a motion/polish question]
+        avoid_when: ["a focused sibling (animate, choreograph, review/improve) is loaded or fits"]
+        limitations: ["676 lines; largely overlaps its siblings"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/animation-vocabulary
+        names: [animation-vocabulary]
+        capabilities: ["name a motion effect from a vague description"]
+        expected_outputs: ["the term(s) to use"]
+        slots: [motion-discovery]
+        platforms: [any]
+        use_when: [user describes an effect without knowing its name]
+        priority: optional
+        value_if_missing: low
+      - id: emil/ask-sonner
+        names: [ask-sonner]
+        capabilities: ["Sonner toast setup, styling, troubleshooting"]
+        expected_outputs: ["Sonner configuration/fixes"]
+        slots: [component-reference]
+        platforms: [web]
+        frameworks: [react, nextjs]
+        use_when: [project uses the Sonner toast library and toasts are in scope]
+        avoid_when: [project uses another toast solution]
+        priority: optional
+        value_if_missing: low
+      - id: emil/write-swift
+        names: [write-swift]
+        capabilities: ["modern Swift, concurrency, performance review"]
+        expected_outputs: ["Swift code findings/fixes"]
+        role: reviewer
+        slots: [code-review]
+        authority: {swift-code: high}
+        platforms: [ios]
+        use_when: [Swift code quality, concurrency or performance issues inside an iOS UI task]
+        avoid_when: [design or UX questions — it is a language skill, not a UI skill]
+        priority: optional
+        value_if_missing: low
+      - id: emil/pick-ui-library
+        names: [pick-ui-library]
+        capabilities: ["recommend a library per component category"]
+        expected_outputs: ["library recommendation"]
+        invocation: user
+        slots: [component-reference]
+        platforms: [web]
+        use_when: ["a new component category is needed and no library exists in the project — recommend to user"]
+        priority: optional
+        value_if_missing: low
+      - id: emil/prototype
+        names: [prototype]
+        capabilities: ["several live variants behind a picker"]
+        expected_outputs: ["variants to choose from"]
+        invocation: user
+        slots: [design-exploration]
+        platforms: [web]
+        use_when: ["user wants several live variants to flip between — recommend to user"]
+        priority: optional
+        value_if_missing: low
+
+  # ───────────────────────────── GSAP ─────────────────────────────
+  - provider: gsap
+    source: https://github.com/greensock/gsap-skills
+    verified_version: "aed9cfd"
+    verified_on: 2026-11-06
+    install_hint: "npx skills add https://github.com/greensock/gsap-skills"
+    shared:
+      capabilities: ["official GSAP API guidance for its area"]
+      required_inputs: ["motion decision record (purpose, timing, easing)", "target elements", "framework and lifecycle"]
+      expected_outputs: ["GSAP code with cleanup (useGSAP/context) and gsap.matchMedia reduced-motion"]
+      kind: skill
+      role: specialist
+      invocation: model
+      slots: [motion-build]
+      authority: {gsap-api: high, scroll-motion: high}
+      platforms: [web]
+      requires: ["animation workflow tool decision = GSAP (gsap already installed, or user approved adding it)"]
+      avoid_when: [native/RN/Flutter, "motion achievable with CSS or the project's existing library, simple transitions"]
+      priority: optional
+      value_if_missing: low
+      notes: "Descriptions say 'recommend GSAP when no library is specified' — ignore for tool choice; the animation workflow decides."
+      brief: >-
+        Load gsap/core plus only the specific skill (scrolltrigger, plugins, react/frameworks).
+        Require cleanup (useGSAP / context revert) and gsap.matchMedia() for prefers-reduced-motion.
+    skills:
+      - {id: gsap/core, names: [gsap-core], use_when: [tweens, easing, stagger, matchMedia, reduced motion with GSAP], capabilities: ["tweens, easing, stagger, matchMedia"]}
+      - {id: gsap/timeline, names: [gsap-timeline], use_when: [sequenced multi-step motion in GSAP], capabilities: ["sequenced timelines"]}
+      - {id: gsap/scrolltrigger, names: [gsap-scrolltrigger], use_when: [pinning, scrub, scroll-linked sequences], capabilities: ["pin, scrub, scroll-linked sequences"]}
+      - {id: gsap/plugins, names: [gsap-plugins], use_when: [Flip, Draggable, SplitText, DrawSVG/MorphSVG, Observer, CustomEase], capabilities: ["Flip, Draggable, SplitText, SVG plugins, CustomEase"]}
+      - {id: gsap/react, names: [gsap-react], frameworks: [react, nextjs], use_when: [GSAP in React/Next.js (useGSAP, cleanup)], capabilities: ["useGSAP and React cleanup"]}
+      - {id: gsap/frameworks, names: [gsap-frameworks], frameworks: [vue, nuxt, svelte, sveltekit], use_when: [GSAP in Vue/Svelte lifecycles], capabilities: ["Vue/Svelte lifecycles and cleanup"]}
+      - {id: gsap/performance, names: [gsap-performance], slots: [motion-performance], use_when: [janky GSAP animation], capabilities: ["transforms, batching, jank fixes"]}
+      - {id: gsap/utils, names: [gsap-utils], use_when: [mapRange, clamp, snap, wrap helpers], capabilities: ["mapRange, clamp, snap, wrap"]}
+
+  # ───────────────────────────── Expo (official) ─────────────────────────────
+  - provider: expo
+    source: https://github.com/expo/skills
+    verified_version: "a9e5bd3"
+    verified_on: 2026-11-06
+    install_hint: "see expo/skills README"
+    shared:
+      required_inputs: ["Expo SDK and RN versions", "target screens", "installed UI/animation libraries"]
+      kind: skill
+      role: specialist
+      invocation: model
+      platforms: [react-native]
+      frameworks: [expo]
+      priority: optional
+      value_if_missing: low
+    skills:
+      - id: expo/native-ui
+        names: [expo-native-ui, "expo:expo-native-ui"]
+        expected_outputs: ["native-feeling Expo screens"]
+        slots: [visual-direction]
+        authority: {rn-native-feel: high}
+        capabilities: [HIG-styled Expo screens, semantic colors, native controls, SF Symbols, visual effects]
+        use_when: [new or redesigned Expo screens that should feel native]
+        avoid_when: [app has its own established cross-platform design system]
+      - id: expo/design-system
+        names: [expo-design-system]
+        capabilities: ["theme tokens and shared component conventions for Expo"]
+        expected_outputs: ["theme/tokens and component structure"]
+        slots: [design-system]
+        authority: {design-system: medium}
+        use_when: [create/organize theme tokens and shared components in an Expo app]
+      - id: expo/ui
+        names: [expo-ui]
+        expected_outputs: ["@expo/ui-based components"]
+        notes: "SwiftUI/Compose APIs stable since Expo SDK 56; web APIs experimental (checked 2026-11-06)."
+        slots: [component-reference]
+        capabilities: ["@expo/ui: real SwiftUI/Jetpack Compose controls (sheets, pickers, sliders, menus)"]
+        use_when: ["@expo/ui already installed, or user approves adding it"]
+        avoid_when: ["@expo/ui not installed and no approval — its description pushes replacing Reanimated/gorhom sheets; project truth wins"]
+        requires: ["@expo/ui dependency"]
+      - id: expo/expo-animation
+        names: [expo-animation]
+        use_when: ["same as emil/animate-expo; load only one"]
+        capabilities: ["same content as emil/animate-expo"]
+        expected_outputs: ["decision record and Reanimated implementation"]
+        equivalent_to: [emil/animate-expo]
+        slots: [motion-build]
+        notes: "Same content as emil/animate-expo (credited). Load only one."
+      - id: expo/router
+        names: [expo-router]
+        capabilities: ["Expo Router routes, tabs, stacks, link previews"]
+        expected_outputs: ["navigation changes (only when in scope)"]
+        slots: [navigation]
+        use_when: ["navigation UI is explicitly in scope (tabs, stacks, link previews)"]
+        avoid_when: [navigation not in scope]
+
+  # ───────────────────────────── Software Mansion ─────────────────────────────
+  - provider: swm
+    source: https://github.com/software-mansion-labs/skills
+    verified_version: "43cde80"
+    verified_on: 2026-11-06
+    install_hint: "see software-mansion-labs/skills README"
+    skills:
+      - id: swm/react-native-best-practices
+        names: [react-native-best-practices, animations, gestures]   # "animations"/"gestures" only count if that SKILL.md says it is Software Mansion's
+        required_inputs: ["RN/Reanimated/Gesture Handler versions", "the motion decision already made"]
+        expected_outputs: ["library-level implementation detail"]
+        kind: skill
+        role: specialist
+        invocation: model
+        slots: [motion-build, motion-performance]
+        authority: {reanimated-api: high, gesture-handler-api: high, rn-performance: high}
+        platforms: [react-native]
+        frameworks: [expo, react-native-cli]
+        capabilities: ["references/animations: Reanimated 4 CSS transitions/animations, shared values, layout & scroll animations, Skia, GPU", "references/gestures: Gesture Handler patterns", "references/svg, multithreading"]
+        use_when: [library-level API detail for Reanimated/Skia/Gesture Handler after the motion design is decided]
+        avoid_when: ["old architecture / Reanimated 3 (targets New Architecture)", "motion design decisions (animate-expo owns feel)"]
+        requires: ["React Native New Architecture"]
+        limitations: ["its description says MUST USE for any RN code task — load only its animations/gestures reference for UI motion"]
+        priority: optional
+        value_if_missing: low
+
+  # ───────────────────────────── Callstack ─────────────────────────────
+  - provider: callstack
+    source: https://github.com/callstackincubator/agent-skills
+    verified_version: "59e9d17"
+    verified_on: 2026-11-06
+    install_hint: "npx skills@latest add callstackincubator/agent-skills --skill agent-device"
+    skills:
+      - id: callstack/agent-device
+        names: [agent-device]
+        required_inputs: ["booted simulator/emulator or device (explicit UDID/serial)", "app running"]
+        expected_outputs: ["screenshots, UI tree, interaction results"]
+        kind: tool
+        role: reviewer
+        invocation: model
+        slots: [visual-validation]
+        platforms: [react-native, ios, android, flutter]
+        capabilities: [drive iOS simulator / Android emulator or device, screenshots, taps, typing, scrolling, UI tree]
+        use_when: [mobile visual or functional validation]
+        brief: "Use for screenshots/taps on the running app; save captures where the user/harness wants evidence (temp or gitignored), never into source."
+        requires: [booted simulator/emulator or connected device]
+        priority: recommended
+        value_if_missing: high
+      - id: callstack/react-navigation
+        names: [react-navigation]
+        capabilities: ["React Navigation stacks, tabs, headers, sheets"]
+        required_inputs: ["navigator setup in scope"]
+        expected_outputs: ["navigation UI changes"]
+        kind: skill
+        role: specialist
+        invocation: model
+        slots: [navigation]
+        platforms: [react-native]
+        use_when: [React Navigation UI explicitly in scope]
+        avoid_when: [navigation not in scope]
+        priority: optional
+        value_if_missing: low
+
+  # ───────────────────────────── Anthropic ─────────────────────────────
+  - provider: anthropic
+    source: https://github.com/anthropics/skills
+    verified_version: "ca45fc4"
+    verified_on: 2026-11-06
+    install_hint: "/plugin marketplace add anthropics/skills · /plugin install example-skills@anthropic-agent-skills"
+    skills:
+      - id: anthropic/frontend-design
+        names: [frontend-design, "example-skills:frontend-design", "anthropic-skills:frontend-design"]
+        required_inputs: ["subject and audience", "existing brand facts", "target stack"]
+        expected_outputs: ["token plan (4–6 colors, type roles, layout concept, principles)", "built page"]
+        kind: skill
+        role: driver
+        cost: light
+        invocation: model
+        slots: [visual-direction]
+        authority: {visual-direction: medium, typography: medium, ux-copy: medium}
+        platforms: [web]
+        frameworks: [any]
+        capabilities: ["aesthetic direction grounded in the subject", "compact token plan (4–6 colors, type roles, layout concept, principles) reviewed against the brief before building", "catalogue of generated-UI tells to avoid", "UX-writing rules"]
+        use_when: [new web page or surface that needs a distinct direction and no design system governs it, a lighter direction than impeccable/new-work for a single page or component set, impeccable/new-work unavailable]
+        avoid_when: [refinement or redesign Refresh inside an existing design system, Operate surfaces inside an app with established conventions, native or React Native or Flutter, another driver already owns the surface]
+        owns: [visual-direction, typography, color, layout]
+        limitations: ["web-oriented (hero, CSS); no platform or accessibility procedure beyond principles", "asks to confirm the subject with the client when the brief is vague — fold into the question batch"]
+        brief: >-
+          Give it the subject, audience and the brand facts the project already has. Take back its
+          token plan (palette, type roles, layout concept, principles) as the direction record, then
+          implement in the project's stack; accessibility floors and platform rules still apply.
+        priority: optional
+        value_if_missing: low
+        notes: "Choosing a driver for a new web surface: Large/full product or a new visual world → impeccable/new-work; marketing site with Node 22 + Chrome and kit consent → taste; a single page or small surface → frontend-design (or new-work)."
+
+  # ───────────────────────────── dickwu ─────────────────────────────
+  - provider: dickwu
+    source: https://github.com/dickwu/apple-design-skill
+    verified_version: "ff4ebdd"
+    verified_on: 2026-11-06
+    install_hint: "npx skills add dickwu/apple-design-skill"
+    skills:
+      - id: dickwu/apple-design
+        names: [apple-design]
+        required_inputs: ["platform/framework", "screens or code paths in scope"]
+        expected_outputs: ["HIG review report: Critical, Improvements, Craft notes, with path:line"]
+        kind: skill
+        role: reviewer
+        cost: medium
+        invocation: model
+        slots: [platform-conformance]
+        authority: {hig-compliance: high, apple-platform-conventions: high, liquid-glass: high}
+        platforms: [ios, react-native, flutter]
+        frameworks: [any]
+        capabilities: ["HIG review through five lenses with Critical/Improvements/Craft report", "124 HIG pages bundled (read 8–12 per review)", "modes: Liquid Glass, iPhone Duo, Apple Pay (App Review 4.9), navigation, forms, onboarding/permissions, accessibility, app icon, dark mode", "code audit citing path:line", "HIG → Flutter/React Native vocabulary mapping"]
+        use_when: [review or audit of UI shipping to Apple platforms (SwiftUI/UIKit, or React Native/Flutter iOS builds), Liquid Glass or iPhone Duo questions, HIG compliance before App Store submission]
+        avoid_when: [Android-only apps (would impose Apple conventions), web apps, read-only tasks when only its improvement mode would apply]
+        side_effects: ["scripts/pull-hig.mjs refreshes the bundled HIG pages over the network — do not run it during a task"]
+        limitations: ["improvement mode edits code: use only when mutation is allowed", "desktop targets (macOS, Tauri, Electron) are outside this orchestrator's platform list"]
+        brief: >-
+          Name the platform/framework and the screens; ask for its review report (Critical,
+          Improvements, Craft notes) in review mode, citing path:line when code is provided. Merge
+          findings with impeccable/critique by location; HIG findings carry the platform-convention
+          authority.
+        priority: recommended
+        value_if_missing: high
+        notes: "Name collision: Emil Kowalski's skill is also named `apple-design` (web). Tell them apart by the SKILL.md description: dickwu's says 'Cross-platform UI/UX design reviewer grounded in Apple's Human Interface Guidelines'; Emil's says 'translated for the web'."
+
+  # ───────────────────────────── Android (official) ─────────────────────────────
+  - provider: android
+    source: https://github.com/android/skills
+    verified_version: "bf68e2d"
+    verified_on: 2026-11-06
+    install_hint: "see android/skills README"
+    shared:
+      required_inputs: ["target screens/composables", "targetSdk, Compose BOM and Material3 versions"]
+      expected_outputs: ["Compose changes following the official guidance, with verification steps"]
+      kind: skill
+      role: specialist
+      invocation: model
+      platforms: [android]
+      frameworks: [compose]
+      priority: optional
+      value_if_missing: low
+    skills:
+      - {id: android/adaptive, names: [adaptive], slots: [responsive], authority: {android-adaptive: high}, use_when: [tablets, foldables, window size classes, input devices], capabilities: ["window size classes, adaptive navigation, list-detail"]}
+      - {id: android/edge-to-edge, names: [edge-to-edge], slots: [responsive], authority: {android-insets: high}, use_when: [content under system bars, IME insets, bar legibility], capabilities: ["insets, IME, system bar legibility"]}
+      - {id: android/navigation-event, names: [navigation-event], slots: [motion-build], authority: {predictive-back: high}, use_when: [predictive back animations, back handling migration], capabilities: ["predictive back handling and animation"]}
+      - {id: android/compose-performance, names: [jetpack-compose-performance], slots: [motion-performance], authority: {compose-performance: high}, use_when: [recomposition overhead, dropped frames], capabilities: ["recomposition and jank diagnosis"]}
+
+  # ───────────────────────────── Vercel ─────────────────────────────
+  - provider: vercel
+    source: https://github.com/vercel-labs/agent-skills
+    verified_version: "1a2c79d"
+    verified_on: 2026-11-06
+    install_hint: "npx skills add vercel-labs/agent-skills"
+    shared:
+      required_inputs: ["files or routes in scope"]
+      kind: skill
+      invocation: model
+      platforms: [web]
+      priority: optional
+      value_if_missing: low
+    skills:
+      - id: vercel/web-design-guidelines
+        names: [web-design-guidelines]
+        expected_outputs: ["file:line findings against the guidelines"]
+        role: reviewer
+        slots: [tech-audit]
+        authority: {web-interface-rules: high}
+        capabilities: [checks files against Vercel Web Interface Guidelines, "terse file:line output"]
+        requires: ["network: fetches guidelines from raw.githubusercontent.com each run"]
+        use_when: ["web code review for rule compliance (a11y, forms, focus, motion basics)"]
+        avoid_when: [native platforms]
+      - id: vercel/react-view-transitions
+        names: [vercel-react-view-transitions]
+        capabilities: ["<ViewTransition> route/shared-element transitions"]
+        expected_outputs: ["view transition implementation"]
+        role: specialist
+        slots: [motion-build]
+        frameworks: [react, nextjs]
+        use_when: [route/page transitions or shared elements via React View Transitions]
+        requires: ["React 19.3+ (<ViewTransition> stable since 19.3, Sep 2026)"]
+
+  # ───────────────────────────── SwiftUI ─────────────────────────────
+  - provider: twostraws
+    source: https://github.com/twostraws/SwiftUI-Agent-Skill
+    verified_version: "f2920b6"
+    verified_on: 2026-11-06
+    install_hint: "see twostraws/SwiftUI-Agent-Skill README"
+    skills:
+      - id: twostraws/swiftui-pro
+        names: [swiftui-pro]
+        capabilities: ["SwiftUI API, maintainability and performance review"]
+        required_inputs: ["SwiftUI files in scope"]
+        expected_outputs: ["code review findings"]
+        kind: skill
+        role: reviewer
+        invocation: model
+        slots: [code-review]
+        authority: {swiftui-code: high}
+        platforms: [ios]
+        frameworks: [swiftui]
+        use_when: [SwiftUI code-quality review alongside design review on Large tasks]
+        avoid_when: [design-only review, UIKit]
+        priority: optional
+        value_if_missing: low
+
+# Knowledge sources. Read the section you need; nothing here is "run".
+# checked: date = facts used in platforms/*.md were verified on that page/date; "no" = location recorded, content not yet verified.
+references:
+  - {id: ref/apple-hig, url: "https://developer.apple.com/design/human-interface-guidelines", platforms: [ios], topics: [layout, typography, navigation, components, accessibility, motion], checked: "2026-11-06"}
+  - {id: ref/swiftui-animation, url: "https://developer.apple.com/documentation/swiftui/animations", platforms: [ios], topics: [animation], checked: "2026-11-06"}
+  - {id: ref/core-animation, url: "https://developer.apple.com/documentation/quartzcore", platforms: [ios], topics: [animation], checked: "no"}
+  - {id: ref/material-3, url: "https://m3.material.io", platforms: [android, flutter, web], topics: [layout, typography, color, components, motion, accessibility], checked: "no"}
+  - {id: ref/compose-animation, url: "https://developer.android.com/develop/ui/compose/animation/introduction", platforms: [android], topics: [animation], checked: "2026-11-06"}
+  - {id: ref/motionlayout, url: "https://developer.android.com/develop/ui/views/animations/motionlayout", platforms: [android], topics: [animation], checked: "no"}
+  - {id: ref/react-native, url: "https://reactnative.dev/docs/getting-started", platforms: [react-native], topics: [components, accessibility, performance], checked: "2026-11-06"}
+  - {id: ref/expo, url: "https://docs.expo.dev", platforms: [react-native], topics: [navigation, ui, build], checked: "2026-11-06"}
+  - {id: ref/reanimated, url: "https://docs.swmansion.com/react-native-reanimated/", platforms: [react-native], topics: [animation], checked: "2026-11-06"}
+  - {id: ref/gesture-handler, url: "https://docs.swmansion.com/react-native-gesture-handler/", platforms: [react-native], topics: [gestures], checked: "2026-11-06"}
+  - {id: ref/flutter-animation, url: "https://docs.flutter.dev/ui/animations", platforms: [flutter], topics: [animation, hero], checked: "2026-11-06"}
+  - {id: ref/flutter-docs, url: "https://docs.flutter.dev", platforms: [flutter], topics: [layout, accessibility, performance], checked: "2026-11-06"}
+  - {id: ref/rive, url: "https://rive.app/docs", platforms: [web, react-native, ios, android, flutter], topics: [interactive animation, state machines], checked: "no"}
+  - {id: ref/wcag-22, url: "https://www.w3.org/TR/WCAG22/", platforms: [any], topics: [accessibility], checked: "2026-11-06"}
+  - {id: ref/waapi, url: "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API", platforms: [web], topics: [animation], checked: "no"}
+  - {id: ref/motion-dev, url: "https://motion.dev/docs", platforms: [web], topics: [animation], checked: "2026-11-06"}
+  - {id: ref/gsap-docs, url: "https://gsap.com/docs/v3/", platforms: [web], topics: [animation], checked: "no"}
+  - {id: ref/android-adaptive, url: "https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes", platforms: [android], topics: [adaptive, window size classes], checked: "2026-11-06"}
+  - {id: ref/android-edge-to-edge, url: "https://developer.android.com/develop/ui/views/layout/edge-to-edge", platforms: [android], topics: [insets], checked: "2026-11-06"}
+  - {id: ref/web-baseline, url: "https://webstatus.dev", platforms: [web], topics: [browser support], checked: "2026-11-06"}
+  - {id: ref/core-web-vitals, url: "https://web.dev/articles/vitals", platforms: [web], topics: [performance], checked: "2026-11-06"}
+  - {id: ref/flutter-material-ui, url: "https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui", platforms: [flutter], topics: [components, migration], checked: "2026-11-06"}
+  - {id: ref/lucian-gallery, url: "https://lucianlabs.dev/uxui-prompt/", platforms: [web], topics: [components, interaction], checked: "2026-11-06 (repo)"}

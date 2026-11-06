@@ -1,0 +1,10 @@
+name: acme
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.5
+flutter:
+  uses-material-design: false

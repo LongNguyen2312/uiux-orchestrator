@@ -1,0 +1,1 @@
+{ "name": "d7", "main": "expo-router/entry", "dependencies": { "expo": "~52.0.40", "expo-router": "~4.0.17", "react-native": "0.76.7", "react-native-reanimated": "~3.16.1", "react-native-gesture-handler": "~2.20.2" } }
