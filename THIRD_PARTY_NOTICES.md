@@ -2,7 +2,14 @@
 
 UIUX Orchestrator is MIT-licensed ([LICENSE](LICENSE)). It **does not bundle, copy or modify the
 code or instructions** of any other skill. It refers to them by name and URL, and it routes work
-to them only when the user has installed them separately under their own licences.
+to them only when they are installed.
+
+**Claude Code plugin dependencies.** `.claude-plugin/marketplace.json` lists six skill plugins
+(Impeccable, Taste, UI UX Pro Max, a subset of Emil Kowalski's skills, Anthropic `frontend-design`
+and Vercel `web-design-guidelines`). Each entry points to its author's GitHub repository at a pinned
+commit. When a user installs the orchestrator plugin, Claude Code downloads those skills directly
+from the original repositories, under their own licences listed below. This repository hosts none
+of their files.
 
 The repository does contain small amounts of third-party material:
 

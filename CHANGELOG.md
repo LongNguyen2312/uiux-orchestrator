@@ -4,6 +4,22 @@ This project follows [Semantic Versioning](https://semver.org). From 1.0, a mino
 routing rules or skills, and a major version is needed to remove a workflow or change the report
 format.
 
+## [1.1.0] - 2026-11-06
+
+### Added
+- The Claude Code plugin now installs six specialist skills as plugin dependencies: Impeccable,
+  Taste, UI UX Pro Max, eight of Emil Kowalski's motion skills, Anthropic `frontend-design` and
+  Vercel `web-design-guidelines`.
+  - Each is fetched from its author's repository at a pinned, verified commit, using sparse
+    checkouts so only the listed skills load (about 2,600 tokens per session in total).
+  - `uninstall --prune` removes them again.
+- The skill registry matches plugin-namespaced skill names (`plugin:skill`) on the part after the
+  colon.
+
+### Changed
+- README "Comes with a design team" section. The usage guide documents the dependencies,
+  Impeccable's hooks and telemetry, and manual installs for other agents.
+
 ## [1.0.0] - 2026-11-06
 
 First public release (Phase 5: packaging).

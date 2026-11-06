@@ -46,6 +46,16 @@ supported (README badge and the table in `docs/usage.md`) only after a recorded 
    `claude plugin marketplace update uiux-orchestrator`, then
    `claude plugin update uiux-orchestrator@uiux-orchestrator`.
 
+## Updating the bundled dependencies
+
+The Claude Code plugin pins each dependency in `.claude-plugin/marketplace.json` to a commit `sha`.
+To move one forward:
+1. Re-verify the skill's facts in `registry/skills.yaml` against that commit.
+2. Update the `sha`.
+3. Run `claude plugin validate .claude-plugin/marketplace.json`.
+4. Install locally with `claude plugin install uiux-orchestrator --marketplace .` and check
+   `claude plugin details <name>@uiux-orchestrator`: only the intended skills should load.
+
 ## Pull requests
 
 - One topic per PR.

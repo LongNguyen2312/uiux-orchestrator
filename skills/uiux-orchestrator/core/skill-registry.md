@@ -37,7 +37,11 @@ A registry entry says what a skill *is*; it does not mean the skill is installed
 and stop at the first hit:
 
 1. **The agent's own skill list** in context (Claude Code lists available skills with names such
-   as `animate` or `plugin:skill`). Match any of `names`.
+   as `animate` or `plugin:skill`). Match any of `names`. A `plugin:skill` name matches on the
+   part after the colon: `emil-kowalski-motion:animate` matches `animate`, and
+   `taste-skill:design-taste-frontend` matches `design-taste-frontend`. The UIUX Orchestrator
+   Claude Code plugin installs a core set this way as dependencies. If the same skill appears twice
+   (a plugin copy and a skills-folder copy), it is available; invoke the one listed first.
 2. **Skill directories** — search for a `SKILL.md` whose frontmatter `name` matches:
    - project: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.codex/skills/`
    - user: `~/.claude/skills/`, `~/.agents/skills/`, `~/.codex/skills/`, `~/.cursor/skills/`

@@ -1,6 +1,6 @@
 {
   "name": "uiux-orchestrator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Adaptive UI/UX orchestrator for web, React Native/Expo, iOS, Android and Flutter: picks the minimum set of design, motion, accessibility and review skills a task needs, carries decisions into code and validates with evidence.",
   "author": {
     "name": "Long Nguyen",
@@ -9,5 +9,24 @@
   "homepage": "https://github.com/LongNguyen2312/uiux-orchestrator",
   "repository": "https://github.com/LongNguyen2312/uiux-orchestrator",
   "license": "MIT",
-  "keywords": ["ui", "ux", "design", "animation", "accessibility", "react-native", "swiftui", "jetpack-compose", "flutter", "orchestrator"]
+  "keywords": [
+    "ui",
+    "ux",
+    "design",
+    "animation",
+    "accessibility",
+    "react-native",
+    "swiftui",
+    "jetpack-compose",
+    "flutter",
+    "orchestrator"
+  ],
+  "dependencies": [
+    "impeccable",
+    "taste-skill",
+    "ui-ux-pro-max",
+    "emil-kowalski-motion",
+    "frontend-design",
+    "web-design-guidelines"
+  ]
 }

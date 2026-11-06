@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml"><img src="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml/badge.svg" alt="validate"></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-1.1.0-blue" alt="version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
   <img src="https://img.shields.io/badge/Claude%20Code%20·%20Codex-ready-black" alt="agents">
 </p>
@@ -89,21 +89,21 @@ Then just ask:
 **Web** · **React Native** · **iOS** · **Android** · **Flutter**. Each platform has built-in,
 version-checked guidance.
 
-## Bring your own specialists
+## Comes with a design team
 
-UIUX Orchestrator **doesn't bundle any other skill**. It works on its own, and every skill you add
-gives it another expert to call on. Popular picks:
+Install it in Claude Code and **six specialist skills come with it**, fetched straight from their
+authors' repositories:
 
-| Skill | What it adds | Install |
-|---|---|---|
-| [Impeccable](https://github.com/pbakaus/impeccable) | Design critique, audits, polish, new visual worlds | `npx impeccable install` |
-| [Taste](https://github.com/Leonxlnx/taste-skill) | Marketing-site design direction | `npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"` |
-| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Data-backed styles, palettes, charts | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill` |
-| [Emil Kowalski](https://github.com/emilkowalski/skills) | Motion that feels right | `npx skills@latest add emilkowalski/skills` |
-| [frontend-design](https://github.com/anthropics/skills) | Distinctive visual direction for new pages | `/plugin marketplace add anthropics/skills` |
+[Impeccable](https://github.com/pbakaus/impeccable) ·
+[Taste](https://github.com/Leonxlnx/taste-skill) ·
+[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) ·
+[Emil Kowalski's motion skills](https://github.com/emilkowalski/skills) ·
+[frontend-design](https://github.com/anthropics/skills) ·
+[Vercel web-design-guidelines](https://github.com/vercel-labs/agent-skills)
 
-<sub>More skills (GSAP, Vercel, Expo, Android, SwiftUI and others) and the exact steps for each agent
-are in the [full list](docs/usage.md#recommended-skills).</sub>
+The orchestrator decides which of them each task needs. Mobile and extra skills (Expo, Android,
+SwiftUI, GSAP…) are optional, and it works without any of them.
+[Details →](docs/usage.md#recommended-skills)
 
 ---
 

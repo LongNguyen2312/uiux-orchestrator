@@ -185,9 +185,35 @@ two assessment sub-agents. The orchestrator uses it when the review itself is th
 
 ## Recommended skills
 
-UIUX Orchestrator bundles no other skill. Each skill below comes from its own author and has its
-own licence. Install the ones you want, and the orchestrator calls each one only for the job it is
-best at.
+### Installed automatically (Claude Code plugin)
+
+Installing the Claude Code plugin also installs these six skills as **plugin dependencies**:
+
+| Dependency | What loads |
+|---|---|
+| `impeccable` | Impeccable 4.8.0: 1 skill, 4 agents and its 3 hooks |
+| `taste-skill` | `design-taste-frontend` |
+| `ui-ux-pro-max` | `ui-ux-pro-max` (needs Python 3 for its search scripts) |
+| `emil-kowalski-motion` | `animate`, `choreograph`, `animation-performance`, `improve-animations`, `review-animations`, `find-animation-opportunities`, `remove-animations`, `animate-expo` |
+| `frontend-design` | `frontend-design` |
+| `web-design-guidelines` | `web-design-guidelines` |
+
+How the dependencies work:
+- Each one is fetched from its author's repository at a pinned commit, the version this project
+  verified. Nothing is copied into this repository.
+- Together they add about 2,600 tokens of skill descriptions to each session.
+- Impeccable ships hooks that run in the background, and it can send anonymous telemetry when a new
+  design starts. Turn that off with `npx impeccable telemetry off` or `DO_NOT_TRACK=1`.
+- `claude plugin uninstall uiux-orchestrator@uiux-orchestrator --prune` removes the orchestrator
+  together with the dependencies it installed.
+- If you already installed one of these separately, you may see it twice. Keep either copy.
+
+Agents other than Claude Code don't support plugin dependencies. Install the skills below yourself.
+
+### Install yourself
+
+Each skill below comes from its own author and has its own licence. Install the ones you want, and
+the orchestrator calls each one only for the job it is best at.
 
 The commands come from each project's README (checked 2026-11-06):
 - `npx skills add …` works for most agents. It needs Node 22.20 or later.
