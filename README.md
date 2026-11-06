@@ -18,43 +18,73 @@
 
 ---
 
+## One prompt. 23 minutes. No hand edits.
+
 <table>
   <tr>
     <td align="center"><b>Before</b></td>
     <td align="center"><b>After</b></td>
   </tr>
   <tr>
-    <td><img src="docs/assets/settings-before.png" alt="Settings page before: a bare form"></td>
-    <td><img src="docs/assets/settings-after.png" alt="Settings page after: the Event Badge concept"></td>
+    <td><img src="docs/assets/vahl-before.jpg" alt="Before: a generic template landing page"></td>
+    <td><img src="docs/assets/vahl-after.jpg" alt="After: a cinematic night hero with a giant Vahl GT title on a line of light"></td>
   </tr>
 </table>
 
-**The request:** *"Redesign the settings page for indie developers. Give it a real concept that
-doesn't look AI-generated."*
+<picture>
+  <source srcset="docs/assets/vahl-demo.webp" type="image/webp">
+  <img src="docs/assets/vahl-demo.gif" alt="The hero line draws and the title rises, model tabs wipe between photos, the charging simulator runs" width="100%">
+</picture>
 
-<p align="center">
-  <img src="docs/assets/settings-demo.gif" alt="Typing a new name reprints the badge, 2FA adds a verified seal, saving reprints it" width="100%">
-</p>
+**The exact prompt**, typed once into Claude Code:
 
-**Concept: "Event Badge".** Your account is the badge you wear at a hackathon:
+```text
+/uiux-orchestrator Redesign the landing page in src/App.tsx for Vahl, a fictional German premium electric car brand with the restraint of Audi. The page works, but it looks like every SaaS template. I want a completely new, art-directed concept that feels like a premium car brand and not like a template or something AI-generated: one strong visual idea, confident typography, a deliberate colour world, and motion that feels engineered (precise and fast, no bouncy gimmicks). It needs a cinematic hero, a way to compare the three models, a technology and charging section, and test-drive booking. Use only the photos in public/cars and don't add npm packages. It must work on mobile, in light and dark mode, and with reduced motion. When you're done, verify it with screenshots and tell me which skills you used and why.
+```
 
-- ✍️ **Type your name** and the badge updates live, marked as a draft.
-- 🛡️ **Turn on two-factor** and a holographic "verified" seal sticks to the badge.
-- 🖨️ **Hit save** and the badge reprints.
-- 🎗️ **Every section has its own track colour**, like ribbons on a conference badge.
+*Vahl is a fictional brand made up for this demo.*
 
-The concept wasn't a guess. The orchestrator classified the task as a full redesign and handed it to
-[Impeccable](https://github.com/pbakaus/impeccable) as the design lead. Impeccable put several
-grounded directions on a decision page, and a human picked one. Nothing was mocked up: these
-images are screenshots of the running page.
+### What the orchestrator did
+
+1. **Read the request.** It classified the task as a full redesign that **replaces** the old look,
+   for a web landing page.
+2. **Read the project.** It found Vite, React 19 and Tailwind v4, the `motion` library already
+   installed, six photos and no design system.
+3. **Assembled the team.** It brought in four specialists, each for one job:
+
+| Job | Skill it picked | Why this one |
+|---|---|---|
+| Visual direction (the lead) | [Anthropic frontend-design](https://github.com/anthropics/skills) | Built for a single new page. Taste and Impeccable's full pipeline were set aside because they write their own files into the project or need setup choices only the user can make |
+| Motion rules | [Emil Kowalski · animate](https://github.com/emilkowalski/skills) | Decides what moves, which curves and durations, and the reduced-motion version |
+| Choreography | [Emil Kowalski · choreograph](https://github.com/emilkowalski/skills) | Orders the hero entrance: line, then name, then copy, then buttons |
+| Independent review | [Impeccable · critique](https://github.com/pbakaus/impeccable), in a separate agent | The reviewer never saw the designer's reasoning. It raised 13 issues, and 12 were fixed |
+
+   The GSAP skills were available but not used: the project already had `motion`, and the prompt ruled out
+   new packages.
+4. **Built one idea, "Lichtlinie" (line of light).** A thin line of light draws across the hero.
+   It then returns as the model-tab marker, the charging bar and the focus line in the booking form.
+5. **Proved it.**
+   - The typecheck and the production build pass.
+   - Screenshots at 320 to 1440 px, in light and dark mode and with reduced motion.
+   - Frame-by-frame traces: the line draws in about 770 ms with no dropped frames.
+   - It clicked and typed through every interaction.
 
 <table>
   <tr>
-    <td align="center" width="33%"><img src="docs/assets/settings-before-mobile.png" alt="Mobile before"><br><sub>Before · mobile</sub></td>
-    <td align="center" width="33%"><img src="docs/assets/settings-after-mobile.png" alt="Mobile after, light"><br><sub>After · light</sub></td>
-    <td align="center" width="33%"><img src="docs/assets/settings-after-mobile-dark.png" alt="Mobile after, dark"><br><sub>After · dark</sub></td>
+    <td align="center" width="33%"><img src="docs/assets/vahl-mobile-before.jpg" alt="Mobile before"><br><sub>Before · mobile</sub></td>
+    <td align="center" width="33%"><img src="docs/assets/vahl-mobile-after.jpg" alt="Mobile after"><br><sub>After · mobile</sub></td>
+    <td align="center" width="33%"><img src="docs/assets/vahl-mobile-after-dark.jpg" alt="Mobile after, dark mode"><br><sub>After · dark mode</sub></td>
   </tr>
 </table>
+
+<details>
+<summary><b>See both full pages side by side</b></summary>
+<br>
+<img src="docs/assets/vahl-fullpage.jpg" alt="Full page before (left) and after (right)">
+</details>
+
+<sub>Full run log and the agent's own report: [tests/results/2026-11-06-showcase-vahl.md](tests/results/2026-11-06-showcase-vahl.md).
+Photos: Pexels ([credits](docs/assets/CREDITS.md)).</sub>
 
 ---
 
@@ -123,7 +153,7 @@ There are no dependencies and no setup. Just ask:
 Each platform has built-in, version-checked guidance. No other skill is required.
     </td>
     <td width="50%" align="center">
-      <img src="docs/assets/settings-after-dark.png" alt="Desktop after, dark mode">
+      <img src="docs/assets/vahl-mobile-after-dark.jpg" width="60%" alt="Vahl landing page on mobile, dark mode">
     </td>
   </tr>
 </table>
