@@ -1,5 +1,54 @@
 # Using UIUX Orchestrator
 
+## Install, update, remove
+
+**Claude Code**: one command, in Claude Code (needs Claude Code 2.1.275 or later):
+
+```text
+/plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator
+```
+
+On the terminal the same install is
+`claude plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator`.
+
+On older Claude Code versions, use two steps instead:
+
+```text
+/plugin marketplace add LongNguyen2312/uiux-orchestrator
+/plugin install uiux-orchestrator@uiux-orchestrator
+```
+
+Restart Claude Code (or start a new session) after installing.
+
+Update: `claude plugin marketplace update uiux-orchestrator`, then
+`claude plugin update uiux-orchestrator@uiux-orchestrator`.
+
+Remove: `claude plugin uninstall uiux-orchestrator@uiux-orchestrator`.
+
+**Codex CLI and other Agent Skills agents:** clone once, then link the skill folder into the
+agent's skills directory:
+
+```bash
+git clone https://github.com/LongNguyen2312/uiux-orchestrator.git ~/uiux-orchestrator
+ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.codex/skills/uiux-orchestrator    # Codex CLI
+# ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.claude/skills/uiux-orchestrator  # Claude Code without the plugin
+```
+
+To update, run `git -C ~/uiux-orchestrator pull`. Only the folder `skills/uiux-orchestrator/` is
+the skill; the rest of the repository is docs and tests.
+
+**Requirements:** none to install.
+- The optional validation scripts need Node 18+ and Chrome, Chromium or Edge.
+- `python3` is used only by the repository's own checks.
+
+## Supported agents
+
+| Agent | Status |
+|---|---|
+| Claude Code (plugin or skills folder) | **Tested**. Plugin install, `/uiux-orchestrator`, and activation without the command (4 of 6 UI prompts in the triggering test, the same review prompt in 3 of 5 runs, with other design skills installed). |
+| Codex CLI 0.166 | **Tested**. It triggered on its own and completed a read-only review, a fix and a plan ([results](../tests/results/codex/)). |
+| Cursor, Gemini CLI, Copilot and other Agent Skills agents | Untested. The skill follows the open spec and needs no agent-specific tool. Agents without a skill tool can follow it by reading the files. |
+
 ## Calling it
 
 | How | When to use it |
@@ -136,8 +185,8 @@ two assessment sub-agents. The orchestrator uses it when the review itself is th
 
 ## Optional skills
 
-It works without any other skill installed. The README lists the skills it knows how to use and
-what each one is used for. When a missing skill would clearly improve a task, the report says so
+It works without any other skill installed. [How it works](how-it-works.md#skill-integrations-optional)
+lists the skills it knows how to use and what each one is used for. When a missing skill would clearly improve a task, the report says so
 in one line, and nothing is installed for you.
 
 ## Troubleshooting

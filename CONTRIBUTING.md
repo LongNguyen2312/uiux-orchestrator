@@ -34,7 +34,7 @@ scenarios.
 ## Supporting another agent
 
 Add its skill directories to the availability list in `core/skill-registry.md`. List the agent as
-supported in the README only after a recorded test run.
+supported (README badge and the table in `docs/usage.md`) only after a recorded test run.
 
 ## Releasing
 
