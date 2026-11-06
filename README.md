@@ -103,7 +103,8 @@ It also gets the most out of the skills you already use:
 
 <p align="center">
   📘 <a href="docs/usage.md">Usage</a> · ⚙️ <a href="docs/how-it-works.md">How it works</a> ·
-  📊 <a href="tests/benchmark.md">Benchmark</a> · 🤝 <a href="CONTRIBUTING.md">Contributing</a>
+  📊 <a href="tests/benchmark.md">Benchmark</a> · 🤝 <a href="CONTRIBUTING.md">Contributing</a> ·
+  📄 <a href="THIRD_PARTY_NOTICES.md">Third-party notices</a>
   <br><br>
   <b>If it saves you a redesign, give it a ⭐</b>
 </p>
