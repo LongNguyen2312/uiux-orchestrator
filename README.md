@@ -1,124 +1,123 @@
-# UIUX Orchestrator
+<h1 align="center">UIUX Orchestrator</h1>
 
-**Turn your coding agent into a product design team that picks the right expert for every UI task
-and proves the result.**
+<p align="center">
+  <b>Your AI agent has a dozen design skills.<br>It needs a design lead.</b>
+</p>
 
-[![validate](https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml/badge.svg)](https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml)
-![version](https://img.shields.io/badge/version-1.0.0-blue)
-![license](https://img.shields.io/badge/license-MIT-green)
-![agents](https://img.shields.io/badge/works%20with-Claude%20Code%20·%20Codex%20CLI-black)
+<p align="center">
+  One skill that decides which expert each UI task needs, builds the result and proves it works.<br>
+  Web · React Native · iOS · Android · Flutter
+</p>
 
-Web · React Native / Expo · iOS (SwiftUI, UIKit) · Android (Compose, Views) · Flutter
+<p align="center">
+  <a href="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml"><img src="https://github.com/LongNguyen2312/uiux-orchestrator/actions/workflows/validate.yml/badge.svg" alt="validate"></a>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
+  <img src="https://img.shields.io/badge/Claude%20Code%20·%20Codex-ready-black" alt="agents">
+</p>
 
 ---
 
-## The problem: great skills, no conductor
-
-The agent-skills ecosystem has exploded. There are excellent skills for UX critique, visual
-design, typography, motion, accessibility, and for platform rules on iOS, Android and React
-Native. Each one is great on its own. Installed together, they become a new problem:
-
-**🎻 Nobody decides who plays.** Your agent picks skills by matching a one-line description. So a
-one-line CSS fix gets a full design-system pipeline, while a real redesign gets no expert at all.
-
-**⚔️ Skills collide.** Two design skills both "own" the screen. One wants to replace your visual
-direction while the other polishes it. You end up with a mix of both and the intent of neither.
-
-**🧱 Advice that doesn't fit your project.** A skill written for Reanimated 4 produces APIs your
-Reanimated 3 app doesn't have. A "redesign" command throws away the design system you asked it
-to keep. A web animation recipe ends up in a SwiftUI screen.
-
-**🔁 Decisions get lost between steps.** The direction chosen in design never reaches
-implementation, and the reviewer judges against different criteria than the designer used.
-
-**🙈 "Done ✅", but nobody looked.** The agent says the UI is fixed without building it, rendering
-it, or checking contrast, overflow or motion.
-
-## The solution: an orchestrator that thinks like a lead designer
-
-UIUX Orchestrator sits above your skills and runs the work the way a senior product team would:
-
-> **The right skill, at the right time, for the right reason.**
+<table>
+  <tr>
+    <td align="center"><b>Before</b></td>
+    <td align="center"><b>After one prompt</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/settings-before.png" alt="Settings page before"></td>
+    <td><img src="docs/assets/settings-after.png" alt="Settings page after"></td>
+  </tr>
+</table>
 
 ```text
-understand the request → read the project → decide what's needed → build → verify → report
+/uiux-orchestrator Redesign the settings page. Make it modern, clean and consistent with the existing app.
 ```
 
-| | |
+This is a real run, not a mockup. In one pass the orchestrator:
+
+- ✅ **kept the app's design system** instead of inventing a new one;
+- 🔍 **brought in a UX critique specialist**, which caught what a plain pass missed: a 1.27:1 switch,
+  iOS zoom on 14 px inputs, and help text pointing to a Settings → Billing page that doesn't exist;
+- 🛡️ **moved "Delete account"** out of the Save row into its own danger zone, with a confirmation step;
+- 📱 **checked the result** with builds and screenshots at 3 widths in light and dark mode.
+
+---
+
+## Why you need it
+
+Design skills are powerful. Put several together, though, and your agent starts guessing.
+
+| 😩 Without an orchestrator | 😎 With UIUX Orchestrator |
 |---|---|
-| 🎯 **Only what the task needs** | It breaks every task into concrete needs: UX critique, visual direction, typography, motion, accessibility, platform conformance. Each need goes to the **single best** skill. A need that wouldn't change the outcome is skipped, so small fixes stay fast and big redesigns get real expertise. |
-| 🧭 **One clear lead per screen** | At most one design "driver" owns a surface, and written rulings settle overlaps between skills. No more tug-of-war. |
-| 🔍 **Fluent in your stack** | Before touching code it detects your framework and versions: Expo SDK and the New Architecture, Reanimated, SwiftUI or UIKit, Compose or Views, Material 3, Flutter. It reads your design tokens, components and motion libraries too. The advice it applies fits *your* project. |
-| 🛡️ **Respects your work** | "Consistent" means it keeps your design system. "Review" means it changes no files. It never installs a skill, library or tool without asking. |
-| 🔗 **Decisions carry through** | Design decisions (direction, tokens, components) are handed to implementation and then to review, so every step works from the same brief. |
-| ✅ **Proof, not promises** | It verifies with builds, screenshots at several widths and colour schemes, contrast and overflow checks, frame-by-frame motion traces, and device runs where available. Every report ends with an honest status: `Passed`, `Passed with limitations`, `Needs review` or `Failed`. |
-| 🧩 **Great on its own** | No other skill is required: built-in guidance covers every platform. Install more skills and it puts each one to its best use. |
+| A one-line fix triggers a whole design pipeline | Small fixes stay small and fast |
+| A real redesign gets no expert at all | Every real need gets its single best expert |
+| Two skills fight over the same screen | One clear lead per screen, with rulings for overlaps |
+| Reanimated 4 code lands in a Reanimated 3 app | It reads your stack and versions first |
+| "Make it consistent" wipes your design system | Your tokens and components are kept |
+| *"Done ✅"*, and nobody opened the page | Screenshots, contrast, overflow and motion checks, with an honest status |
 
-## Install
-
-**Claude Code** (one command):
+## Install in 10 seconds
 
 ```text
 /plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator
 ```
 
-**Codex CLI and other Agent Skills agents:**
+<details>
+<summary>Codex CLI and other agents</summary>
 
 ```bash
 git clone https://github.com/LongNguyen2312/uiux-orchestrator.git ~/uiux-orchestrator
 ln -s ~/uiux-orchestrator/skills/uiux-orchestrator ~/.codex/skills/uiux-orchestrator
 ```
 
-That's it: there are no dependencies. The [usage guide](docs/usage.md#install-update-remove)
-covers updates and other agents.
+For updates and other agents, see the [usage guide](docs/usage.md#install-update-remove).
+</details>
 
-## Use
-
-Just describe what you want, or start with `/uiux-orchestrator` to call it directly:
+There are no dependencies and no setup. Just ask:
 
 ```text
-/uiux-orchestrator Redesign the settings screen. Keep it consistent with the app.
 /uiux-orchestrator The onboarding animation feels dead. Make it smooth.
-/uiux-orchestrator Review the dashboard for UX problems. Don't change the code.
+/uiux-orchestrator Review the dashboard for UX problems. Don't touch the code.
+/uiux-orchestrator Build an OTP input that handles paste and autofill.
 ```
 
-There are no sub-commands to learn. It recognises design, redesign, improvement, animation,
-review, bug-fix, design-system and accessibility work from your words.
+## Numbers, not adjectives
 
-## What you get back
+<table>
+  <tr>
+    <td align="center"><h2>100%</h2>right skills picked<br><sub>vs 50% for the agent alone</sub></td>
+    <td align="center"><h2>0%</h2>unnecessary skill runs<br><sub>vs 47% for the agent alone</sub></td>
+    <td align="center"><h2>16/16</h2>stacks detected correctly<br><sub>from real project files</sub></td>
+  </tr>
+</table>
 
-A real excerpt from a dashboard review:
+<sub>The scenarios and methods are in the [benchmark](tests/benchmark.md).</sub>
 
-```markdown
-### 1. [Critical] "remove" can't be reached by keyboard and deletes instantly
-- **Where:** `src/pages/Dashboard.tsx:47`
-- **Problem:** a clickable `div`: no role, no Tab stop. One click removes even the live project,
-  with no confirmation or undo.
-- **Fix:** use the shared `Button` with a label like "Remove Checkout API", plus an undo message.
+## Speaks every UI stack
 
-### 2. [High] Text too faint in light mode, and status shown only by colour
-| Element    | Colour    | Light theme | Required |
-|------------|-----------|-------------|----------|
-| KPI labels | `#b5b5bd` | about 2.0:1 | 4.5:1    |
+<table>
+  <tr>
+    <td valign="top" width="50%">
 
-**Skill used:** Impeccable's critique, with its two independent assessment passes.
-```
+**🌐 Web:** React, Next.js, Vue, Angular, Svelte, HTML/CSS<br>
+**⚛️ React Native:** Expo and CLI, New Architecture, Reanimated 4<br>
+**🍎 iOS:** SwiftUI and UIKit, Liquid Glass, HIG<br>
+**🤖 Android:** Compose and Views, Material 3 Expressive<br>
+**🐦 Flutter:** Material and Cupertino
 
-Every finding is located, ranked and paired with a fix that uses your own components and tokens.
-[More examples →](docs/usage.md)
+Each platform has built-in, version-checked guidance. No other skill is required.
+    </td>
+    <td width="50%">
+      <img src="docs/assets/settings-before-mobile.png" width="48%" alt="Mobile before">
+      <img src="docs/assets/settings-after-mobile-dark.png" width="48%" alt="Mobile after, dark mode">
+    </td>
+  </tr>
+</table>
 
-## Proven on real tests
+## Makes your favourite skills better
 
-| | Agent alone | With UIUX Orchestrator |
-|---|---|---|
-| Picked the right skills for the task | 50% | **100%** |
-| Ran skills the task didn't need | 47% | **0%** |
-| Detected platform, framework and architecture from project files | — | **16 / 16** |
-
-The agent-alone column is the same model choosing from the same installed skills, without the
-orchestrator. The scenarios and methods are in the [benchmark](tests/benchmark.md).
-
-## Plays well with the skills you love
+Already using these? UIUX Orchestrator knows what each one is best at, what version it targets and
+what it changes in your project, and it calls each one only where it adds real value.
 
 [Impeccable](https://github.com/pbakaus/impeccable) ·
 [Emil Kowalski](https://github.com/emilkowalski/skills) ·
@@ -131,14 +130,12 @@ orchestrator. The scenarios and methods are in the [benchmark](tests/benchmark.m
 [Callstack](https://github.com/callstackincubator/agent-skills) · [Android](https://github.com/android/skills) ·
 [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill)
 
-It knows what each skill is best at, which versions it targets, what it needs to run, and what it
-changes in your project. It calls each one only where it adds real value.
-[See how each is used →](docs/how-it-works.md#skill-integrations-optional)
-
 ## Learn more
 
-- [Usage guide](docs/usage.md): phrasing requests, reading reports, troubleshooting.
-- [How it works](docs/how-it-works.md): the pipeline, platforms, built-in tools, development.
-- [Benchmark](tests/benchmark.md) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
+📘 [Usage guide](docs/usage.md) · ⚙️ [How it works](docs/how-it-works.md) ·
+📊 [Benchmark](tests/benchmark.md) · 📝 [Changelog](CHANGELOG.md) · 🤝 [Contributing](CONTRIBUTING.md)
 
-MIT licensed. Stars, issues and real-project stories are welcome. ⭐
+<p align="center">
+  <b>If it saves you a redesign, give it a ⭐</b> so other builders can find it too.<br>
+  <sub>MIT licensed</sub>
+</p>
