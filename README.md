@@ -1,12 +1,15 @@
 <h1 align="center">UIUX Orchestrator</h1>
 
+<h3 align="center">Your agent has a dozen design skills.<br>This is the one that knows which to use.</h3>
+
 <p align="center">
-  <b>Your AI agent has a dozen design skills.<br>It needs a design lead.</b>
+  Describe the interface you want in one sentence. UIUX Orchestrator reads your project and puts the
+  right specialists for design, motion and review on the job. Then it builds the result and shows you
+  the screenshots that prove it works.
 </p>
 
 <p align="center">
-  One skill that decides which expert each UI task needs, builds the result and proves it works.<br>
-  Web · React Native · iOS · Android · Flutter
+  <b>Web · React Native · iOS · Android · Flutter</b>
 </p>
 
 <p align="center">
@@ -16,9 +19,15 @@
   <img src="https://img.shields.io/badge/Claude%20Code%20·%20Codex-ready-black" alt="agents">
 </p>
 
+```text
+/plugin install uiux-orchestrator --marketplace LongNguyen2312/uiux-orchestrator
+```
+
 ---
 
-## One prompt. 23 minutes. No hand edits.
+## One sentence in. A finished landing page out.
+
+<p align="center"><b>23 minutes · 4 specialist skills · 0 lines written by hand</b></p>
 
 <table>
   <tr>
@@ -36,7 +45,7 @@
   <img src="docs/assets/vahl-demo.gif" alt="The hero line draws and the title rises, model tabs wipe between photos, the charging simulator runs" width="100%">
 </picture>
 
-**The exact prompt**, typed once into Claude Code:
+**The exact prompt**, typed once into Claude Code, with no help after that:
 
 ```text
 /uiux-orchestrator Redesign the landing page in src/App.tsx for Vahl, a fictional German premium electric car brand with the restraint of Audi. The page works, but it looks like every SaaS template. I want a completely new, art-directed concept that feels like a premium car brand and not like a template or something AI-generated: one strong visual idea, confident typography, a deliberate colour world, and motion that feels engineered (precise and fast, no bouncy gimmicks). It needs a cinematic hero, a way to compare the three models, a technology and charging section, and test-drive booking. Use only the photos in public/cars and don't add npm packages. It must work on mobile, in light and dark mode, and with reduced motion. When you're done, verify it with screenshots and tell me which skills you used and why.
@@ -68,6 +77,11 @@
    - Screenshots at 320 to 1440 px, in light and dark mode and with reduced motion.
    - Frame-by-frame traces: the line draws in about 770 ms with no dropped frames.
    - It clicked and typed through every interaction.
+6. **Took a bug report like a teammate.** We spotted that the left edge of the "V" was clipped and
+   sent one line: *"In the hero, the left edge of the "V" in "Vahl GT" is cut off. Fix it."* The
+   orchestrator recognised a small, local bug and took its fast path, with no design skills and
+   no ceremony. It found the cause, an overflow clip on the title's wrapper, and fixed it with a
+   one-line CSS change in 77 seconds.
 
 <table>
   <tr>

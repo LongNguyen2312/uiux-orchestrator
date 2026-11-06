@@ -18,7 +18,7 @@
   localhost:5391, Chrome was installed, Node 20 was the default and Node 24 was available via nvm.
 - **Permissions:** edits were auto-accepted. Bash was limited to build, node, python and similar
   commands; no package installs.
-- **Duration:** about 23 minutes over two segments, the second resuming after the background
+- **Duration (redesign):** about 23 minutes over two segments, the second resuming after the background
   critique finished. 142 + 56 turns. No human input during the run, and no edits by the author
   afterwards.
 
@@ -88,3 +88,42 @@ I edited only `src/App.tsx` and `src/index.css`. No packages were added and I di
 - **Fictional figures:** I invented the specs and the third charge time; the footer marks all figures as illustrative.
 - **Image sizes:** all photos are 2400 px with no smaller versions.
 - **Not checked:** I didn't test on a real phone or with a screen reader, and my own screenshot script stood in for Playwright, which wasn't permitted in this session.
+
+
+## Follow-up: bug report (second session, same project)
+
+The author noticed that the left edge of the "V" was clipped in the hero title and sent one line.
+It went to a fresh `claude -p` session with the same harness:
+
+```text
+/uiux-orchestrator In the hero, the left edge of the "V" in "Vahl GT" is cut off. Fix it.
+```
+
+- Orchestrator files read: `workflows/bug-fix.md` and `core/execution-policy.md` (fast path).
+- No skills were invoked.
+- 17 turns, about 77 seconds.
+- Diff: `src/index.css`, `.hero-name-mask { overflow: clip }` became `overflow-x: visible; overflow-y: clip`.
+- The agent could not render in its sandbox and said so. The author verified the fix with
+  screenshots afterwards.
+
+The agent's report (verbatim):
+
+I've fixed the cut-off V with a one-line CSS change, but I couldn't see the result in a browser: both Playwright and headless Chrome were blocked here. The fix is based on reading the code only.
+
+**Cause:** the heading is shifted left by `-0.04em` (`margin-left` on `.hero-name`) so the V lines up visually with the content edge. But its wrapper, `.hero-name-mask`, clips overflow on both axes. So the part of the V that sticks out past the wrapper's left edge gets cut off. That clipping only needs to be vertical, for the "rise up" entrance animation.
+
+**Fix** (`src/index.css:351`): the wrapper now clips only top and bottom:
+```css
+overflow-x: visible;
+overflow-y: clip;
+```
+The left shift stays, so the V still lines up with the content edge. The entrance animation is unchanged because the vertical clip is still there.
+
+**Why nothing else should change:**
+- `.hero-name-mask` is used only once, in the hero (`src/App.tsx:188`).
+- Nothing else in the hero clips the sides of the V. The page container (`.wrap`) has no clipping. The hero section does clip, but its edge is always at least 1.25rem from the heading, and the V sticks out by at most about 0.8rem (at the largest font size).
+- Browser support is the same as before, since the old code already relied on `overflow: clip`.
+
+**Not checked:** I haven't seen the change on screen, and the font's actual glyph shapes weren't measured. To confirm, reload http://localhost:5391/ and look at the V at a wide window and at about 375px wide. Also watch the entrance animation once to check that the text still rises out of an invisible edge. If you allow Playwright or Chrome, I can take before-and-after screenshots myself.
+
+I didn't use any extra design skills; this was a simple local CSS bug.
