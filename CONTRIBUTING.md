@@ -53,7 +53,9 @@ To move one forward:
 1. Re-verify the skill's facts in `registry/skills.yaml` against that commit.
 2. Update the `sha`.
 3. Run `claude plugin validate .claude-plugin/marketplace.json`.
-4. Install locally with `claude plugin install uiux-orchestrator --marketplace .` and check
+4. Run `python3 scripts/check_pins.py`. CI also runs it every Monday and fails if an upstream
+   commit disappears.
+5. Install locally with `claude plugin install uiux-orchestrator --marketplace .` and check
    `claude plugin details <name>@uiux-orchestrator`: only the intended skills should load.
 
 ## Pull requests

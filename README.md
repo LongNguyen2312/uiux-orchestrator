@@ -105,6 +105,11 @@ The orchestrator decides which of them each task needs. Mobile and extra skills 
 SwiftUI, GSAP…) are optional, and it works without any of them.
 [Details →](docs/usage.md#recommended-skills)
 
+<sub>These are independent projects by their own authors, under their own licences
+([notices](THIRD_PARTY_NOTICES.md)). This project is not affiliated with them. Impeccable runs
+background hooks and may send anonymous telemetry when a new design starts. To turn the telemetry
+off, run `npx impeccable telemetry off` or set `DO_NOT_TRACK=1`.</sub>
+
 ---
 
 <p align="center">
