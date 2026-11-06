@@ -183,11 +183,49 @@ schemes (L4).
 A review that runs Impeccable's critique takes longer than one without it, because critique runs
 two assessment sub-agents. The orchestrator uses it when the review itself is the deliverable.
 
-## Optional skills
+## Recommended skills
 
-It works without any other skill installed. [How it works](how-it-works.md#skill-integrations-optional)
-lists the skills it knows how to use and what each one is used for. When a missing skill would clearly improve a task, the report says so
-in one line, and nothing is installed for you.
+UIUX Orchestrator bundles no other skill. Each skill below comes from its own author and has its
+own licence. Install the ones you want, and the orchestrator calls each one only for the job it is
+best at.
+
+The commands come from each project's README (checked 2026-11-06):
+- `npx skills add …` works for most agents. It needs Node 22.20 or later.
+- `/plugin …` lines are for Claude Code.
+
+### Web design
+
+| Skill | Install |
+|---|---|
+| [Impeccable](https://github.com/pbakaus/impeccable) | `npx impeccable install` (detects your agents). In Claude Code you can instead run `/plugin marketplace add pbakaus/impeccable` and install it from `/plugin` |
+| [Taste](https://github.com/Leonxlnx/taste-skill) | `npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"`. Its builds need Node 22+ and Chrome |
+| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`, then `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill`. Needs Python 3 |
+| [Anthropic frontend-design](https://github.com/anthropics/skills) | `/plugin marketplace add anthropics/skills`, then `/plugin install example-skills@anthropic-agent-skills` |
+| [Vercel web-design-guidelines](https://github.com/vercel-labs/agent-skills) | `npx skills add vercel-labs/agent-skills` |
+| [Lucian UX/UI](https://github.com/Seokwoooo/lucian-uxui) | `npx skills add Seokwoooo/lucian-uxui` |
+
+### Motion
+
+| Skill | Install |
+|---|---|
+| [Emil Kowalski skills](https://github.com/emilkowalski/skills) | `npx skills@latest add emilkowalski/skills` |
+| [GSAP skills](https://github.com/greensock/gsap-skills) | `npx skills add https://github.com/greensock/gsap-skills` |
+
+### Mobile
+
+| Skill | Install |
+|---|---|
+| [Expo](https://github.com/expo/skills) | `/plugin install expo@claude-plugins-official` (Claude Code), or `npx skills@latest add expo/skills --skill '*'` |
+| [Software Mansion](https://github.com/software-mansion-labs/skills) | `npx skills add software-mansion-labs/skills` |
+| [Callstack (incl. agent-device)](https://github.com/callstackincubator/agent-skills) | `npx skills@latest add callstackincubator/agent-skills --skill '*'` |
+| [Android](https://github.com/android/skills) | `/plugin marketplace add android/skills`, then `/plugin install android-skills@android-skills` |
+| [SwiftUI Pro](https://github.com/twostraws/SwiftUI-Agent-Skill) | `npx skills add https://github.com/twostraws/swiftui-agent-skill --skill swiftui-pro` |
+| [Apple Design (dickwu)](https://github.com/dickwu/apple-design-skill) | `npx skills add dickwu/apple-design-skill` |
+
+When a missing skill would clearly improve a task, the report says so in one line. The orchestrator
+never installs anything for you. What each skill is used for is in
+[How it works](how-it-works.md#skill-integrations-optional), and licences are in
+[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
 
 ## Troubleshooting
 

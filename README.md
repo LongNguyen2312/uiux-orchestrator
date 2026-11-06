@@ -89,15 +89,21 @@ Then just ask:
 **Web** · **React Native** · **iOS** · **Android** · **Flutter**. Each platform has built-in,
 version-checked guidance.
 
-It also gets the most out of the skills you already use:
-[Impeccable](https://github.com/pbakaus/impeccable) ·
-[Emil Kowalski](https://github.com/emilkowalski/skills) ·
-[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) ·
-[frontend-design](https://github.com/anthropics/skills) ·
-[Apple Design](https://github.com/dickwu/apple-design-skill) ·
-[Vercel](https://github.com/vercel-labs/agent-skills) · [GSAP](https://github.com/greensock/gsap-skills) ·
-[Taste](https://github.com/Leonxlnx/taste-skill) · [Expo](https://github.com/expo/skills) ·
-[and more](docs/how-it-works.md#skill-integrations-optional)
+## Bring your own specialists
+
+UIUX Orchestrator **doesn't bundle any other skill**. It works on its own, and every skill you add
+gives it another expert to call on. Popular picks:
+
+| Skill | What it adds | Install |
+|---|---|---|
+| [Impeccable](https://github.com/pbakaus/impeccable) | Design critique, audits, polish, new visual worlds | `npx impeccable install` |
+| [Taste](https://github.com/Leonxlnx/taste-skill) | Marketing-site design direction | `npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"` |
+| [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Data-backed styles, palettes, charts | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill` |
+| [Emil Kowalski](https://github.com/emilkowalski/skills) | Motion that feels right | `npx skills@latest add emilkowalski/skills` |
+| [frontend-design](https://github.com/anthropics/skills) | Distinctive visual direction for new pages | `/plugin marketplace add anthropics/skills` |
+
+<sub>More skills (GSAP, Vercel, Expo, Android, SwiftUI and others) and the exact steps for each agent
+are in the [full list](docs/usage.md#recommended-skills).</sub>
 
 ---
 
